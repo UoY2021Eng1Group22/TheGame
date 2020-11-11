@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 sourceCompatibility = 1.7
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../core/assets"]
@@ -11,6 +13,11 @@ task run(dependsOn: classes, type: JavaExec) {
     standardInput = System.in
     workingDir = project.assetsDir
     ignoreExitValue = true
+
+    if (Os.isFamily(Os.FAMILY_MAC))
+        jvmArgs = ['-XstartOnFirstThread'] // macOS specific: LWJGL3 backend
+        // note: change IDE launch config as well to reflect the new flag
+
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
