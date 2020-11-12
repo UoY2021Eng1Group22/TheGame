@@ -17,7 +17,7 @@ public class Boat extends Entity {
     int racePosition;
 
     //max speed indicates the speed stat
-    //speeed is used for current speed so it starts at 0
+    //speed is used for current speed so it starts at 0
     //all boats start at x=0. the starting y pos is different for each boat
     public Boat(Type t, float y){
         speed = 0;
