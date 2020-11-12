@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -27,9 +28,8 @@ public class MainMenu implements Screen {
         game = gameInstance;
         stage = new Stage(new ScreenViewport());
 
-        batch = new SpriteBatch();
         img = new Texture("bg.png");
-        img.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
+//        img.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 
         var textureRegion = new TextureRegion(img);
         textureRegion.setRegion(0, 0, img.getWidth(), img.getWidth());
@@ -47,12 +47,23 @@ public class MainMenu implements Screen {
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 
+        var playButton = new TextButton("play", TheGame.gameSkin);
+        playButton.setWidth(Gdx.graphics.getWidth() / 2);
+        playButton.setPosition(
+                Gdx.graphics.getWidth() / 2 - playButton.getWidth() / 2,
+                Gdx.graphics.getHeight() / 2 - playButton.getHeight() / 2
+        );
+
+//        playButton.setWidth()
+
+
     }
 
     public void create() {
 
     }
 
+    @Override
     public void resize(int width, int height) {
 
     }
@@ -91,7 +102,5 @@ public class MainMenu implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        batch.dispose();
-        img.dispose();
     }
 }

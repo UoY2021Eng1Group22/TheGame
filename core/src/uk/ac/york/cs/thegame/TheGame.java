@@ -18,7 +18,7 @@ public class TheGame extends Game {
 
 	@Override
 	public void create() {
-		// load game texture
+//      load game texture
 //		batch = new SpriteBatch();
 //		img = new Texture("bg.png");
 
@@ -28,18 +28,17 @@ public class TheGame extends Game {
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 //		Gdx.gl.glClearColor(1, 0, 0, 1);
 //		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //		batch.begin();
 //		batch.draw(img, 0, 0);
 //		batch.end();
 		super.render();
-
 	}
-	
+
 	@Override
-	public void dispose () {
+	public void dispose() {
 //		batch.dispose();
 //		img.dispose();
 	}
