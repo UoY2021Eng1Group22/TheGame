@@ -11,10 +11,9 @@ public class TheGame extends Game {
 	// to utilise Screen interface
 
 	//	SpriteBatch batch;
-//	Texture img;
+	//	Texture img;
 	static public Skin gameSkin;
 	static public BitmapFont font;
-
 
 	@Override
 	public void create() {
@@ -41,5 +40,6 @@ public class TheGame extends Game {
 	public void dispose() {
 //		batch.dispose();
 //		img.dispose();
+		super.dispose();
 	}
 }
