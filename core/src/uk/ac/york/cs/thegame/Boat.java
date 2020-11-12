@@ -19,6 +19,14 @@ public class Boat extends Entity {
     //max speed indicates the speed stat
     //speed is used for current speed so it starts at 0
     //all boats start at x=0. the starting y pos is different for each boat
+    public Boat(){
+        this.health = 3;
+        this.acceleration = 3;
+        this.maxSpeed = 3;
+        this.agility = 3;
+        xPos = 0;
+        yPos = 0;
+    }
     public Boat(Type t, float y){
         speed = 0;
         exhaustion = 0;
