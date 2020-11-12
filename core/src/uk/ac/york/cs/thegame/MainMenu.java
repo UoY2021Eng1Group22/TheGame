@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -21,27 +23,32 @@ public class MainMenu implements Screen {
     private final Stage stage;
     private final Game game;
     SpriteBatch batch;
-    Texture img;
+    Texture bgTexture;
 
     public MainMenu(Game gameInstance) {
 
+        // parent game instance, to control the game (ApplicationListener)
         game = gameInstance;
+
+        // setup the stage
         stage = new Stage(new ScreenViewport());
 
-        img = new Texture("bg.png");
-//        img.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
+        // background, wraps + repeats
+        bgTexture = new Texture("skin/dirt.png");
+        bgTexture.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 
-        var textureRegion = new TextureRegion(img);
-        textureRegion.setRegion(0, 0, img.getWidth(), img.getWidth());
-        var bg = new Image(textureRegion);
-        bg.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        bg.setPosition(0, Gdx.graphics.getHeight() - bg.getHeight());
-        stage.addActor(bg);
+        // setup
+        var textureRegion = new TextureRegion(bgTexture);
+        textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getWidth());
+        var bgImage = new Image(textureRegion);
+        bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
+        stage.addActor(bgImage);
 
         var labelStyle = new Label.LabelStyle();
         labelStyle.font = TheGame.font;
 
-        var title = new Label("The Game", labelStyle);
+        var title = new Label("boatcraft", labelStyle);
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight() * 2 / 3);
         title.setWidth(Gdx.graphics.getWidth());
@@ -53,9 +60,43 @@ public class MainMenu implements Screen {
                 Gdx.graphics.getWidth() / 2 - playButton.getWidth() / 2,
                 Gdx.graphics.getHeight() / 2 - playButton.getHeight() / 2
         );
+        playButton.addListener(new InputListener() {
 
-//        playButton.setWidth()
+            @Override
+            public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
+                game.setScreen(new PlayScreen(game));
+            }
 
+            @Override
+            public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+        });
+
+        stage.addActor(playButton);
+
+        var quitButton = new TextButton("quit", TheGame.gameSkin);
+        quitButton.setWidth(Gdx.graphics.getWidth() / 2);
+        quitButton.setPosition(
+                Gdx.graphics.getWidth() / 2 - quitButton.getWidth() / 2,
+                Gdx.graphics.getHeight() / 3 - quitButton.getHeight() / 2
+        );
+        quitButton.addListener(new InputListener() {
+
+            @Override
+            public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
+                dispose();
+            }
+
+            @Override
+            public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+        });
+
+        stage.addActor(quitButton);
 
     }
 
@@ -102,5 +143,6 @@ public class MainMenu implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        Gdx.app.exit();
     }
 }
