@@ -5,41 +5,41 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+/**
+ * TheGame is the entrypoint of the game.
+ * <p>
+ * This class loads the game skin and font, and sets the screen to MainMenu.
+ * <p>
+ * No game logic should live here.
+ */
 public class TheGame extends Game {
 
 	// superclass changed from ApplicationListener to Game
 	// to utilise Screen interface
 
-	//	SpriteBatch batch;
-	//	Texture img;
 	static public Skin gameSkin;
 	static public BitmapFont font;
 
 	@Override
 	public void create() {
-//      load game texture
-//		batch = new SpriteBatch();
-//		img = new Texture("bg.png");
+
+		// load game skin and font
 
 		gameSkin = new Skin(Gdx.files.internal("skin/craftacular-ui.json"));
 		font = new BitmapFont(Gdx.files.internal("skin/font-title-export.fnt"));
+
+		// go to main menu (load the main menu screen)
+
 		this.setScreen(new MainMenu(this));
 	}
 
 	@Override
 	public void render() {
-//		Gdx.gl.glClearColor(1, 0, 0, 1);
-//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//		batch.begin();
-//		batch.draw(img, 0, 0);
-//		batch.end();
 		super.render();
 	}
 
 	@Override
 	public void dispose() {
-//		batch.dispose();
-//		img.dispose();
 		super.dispose();
 	}
 }

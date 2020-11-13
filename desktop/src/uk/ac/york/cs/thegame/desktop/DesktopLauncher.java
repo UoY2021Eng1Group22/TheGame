@@ -8,9 +8,14 @@ import uk.ac.york.cs.thegame.TheGame;
 
 public class DesktopLauncher {
 	public static void main(String[] arg) {
+        // setting up the low-level game library
+
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+
         config.setTitle("the-game");
         config.setWindowedMode(800, 600);
+
+        // start the game
         new Lwjgl3Application(new TheGame(), config);
     }
 }
