@@ -110,7 +110,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        // TODO: make all stage actors responsive to window size change
     }
 
     @Override

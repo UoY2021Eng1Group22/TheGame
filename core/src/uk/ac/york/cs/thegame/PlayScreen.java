@@ -14,14 +14,14 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class PlayScreen implements Screen {
 
     private final Stage stage;
-    private final Game game;
+//    private final Game game;
 
     SpriteBatch batch;
     Texture bgTexture;
 
     public PlayScreen(Game gameInstance) {
 
-        game = gameInstance;
+//        game = gameInstance;
         stage = new Stage(new ScreenViewport());
 
         bgTexture = new Texture("bg.png");
@@ -33,7 +33,6 @@ public class PlayScreen implements Screen {
         bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
-
 
     }
 
@@ -56,11 +55,22 @@ public class PlayScreen implements Screen {
 
     @Override
     public void show() {
+
+        // create actor object
+        var someSquare = new Square(100, 100);
+
+        // handing control over to actor
+        stage.setKeyboardFocus(someSquare);
+
         Gdx.input.setInputProcessor(stage);
+
+        // add actor to stage
+        stage.addActor(someSquare);
     }
 
     @Override
     public void hide() {
+        Gdx.input.setInputProcessor(null);
     }
 
     @Override
@@ -70,10 +80,6 @@ public class PlayScreen implements Screen {
 
         stage.act();
         stage.draw();
-
-//		batch.begin();
-//		batch.draw(img, 0, 0);
-//		batch.end();
     }
 
 
