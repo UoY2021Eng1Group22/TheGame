@@ -11,7 +11,7 @@ public class GameLevel {
     private int stationaryObstacles;
     private int movingObstacles;
     private int dynamicObstacles;
-    private ArrayList<Obstacle> currentStageObstacles;
+    ArrayList<Obstacle> currentStageObstacles;
     private int amountOfOpponents;
     private int currentTotalObstacles;
 
@@ -52,7 +52,18 @@ public class GameLevel {
                 break;
             }
 
-            
+            currentStageObstacles = new ArrayList<>();
+            for (int i = 0; i < stationaryObstacles; i++) {
+                Obstacle startObst = new Obstacle(currentStage);
+                currentStageObstacles.add(startObst);
+            }
+
+            for (int i = 0; i < movingObstacles; i++) {
+                Obstacle startMovObst = new MovingObstacle(currentStage);
+                //currentStageObstacles.add(startMovObst);
+            }
+
+
         }
 
     }

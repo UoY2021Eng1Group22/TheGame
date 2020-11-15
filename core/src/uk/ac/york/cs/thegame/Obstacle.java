@@ -3,30 +3,38 @@ package uk.ac.york.cs.thegame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
+
+
 class Obstacle {
     int capableDamage;
     int [] position;
-    String[] possibleSprites = {"obs1.png", "obs2.png"};
+    String[][] possibleSprites = {{"skin/obs1.png", "skin/obs2.png"}, {"skin/obs1.png", "skin/obs2.png"}, {"skin/obs3.png", "skin/obs4.png"}, {"skin/obs5.png"}};
     Texture obsImg;
 
     public Obstacle() {
+
+    }
+
+    public Obstacle(int levelNum) {
         position = new int[2];
         position[0] = (int) (Math.random() * Gdx.graphics.getWidth());
-        position[1] = (int) (Math.random() * Gdx.graphics.getHeight());
+        position[1] = (int) (Math.random() * (Gdx.graphics.getHeight() - 120) +120);
 
-        int ranSprite = (int) (Math.random() * (possibleSprites.length));
-        obsImg = new Texture(possibleSprites[ranSprite]);
+        int ranSprite = (int) (Math.random() * (possibleSprites[levelNum-1].length));
+        obsImg = new Texture(possibleSprites[levelNum-1][ranSprite]);
     }
 }
 
 class MovingObstacle extends Obstacle {
     int speed;
-    String[] possibleSprites = {"obsMov1.png", "obsMov2.png"};
+    String[] possibleSprites = {"skin/obsMov1.gif", "skin/obsMov2.gif", "skin/obsMov3.gif"};
     Texture obsImg;
 
-    public MovingObstacle() {
-        int ranSprite = (int) (Math.random() * (possibleSprites.length));
-        obsImg = new Texture(possibleSprites[ranSprite]);
+    public MovingObstacle(int levelNum) {
+        position = new int[2];
+        position[0] = (int) (Math.random() * Gdx.graphics.getWidth());
+        position[1] = (int) (Math.random() * (Gdx.graphics.getHeight() - 120) +120);
+        obsImg = new Texture(possibleSprites[levelNum]);
     }
 
     void detectObstacle() {
@@ -38,18 +46,16 @@ class DynamicObstacle extends Obstacle {
     int lifespan;
     float frequency;
     int[] targetPos;
-    String[] possibleSprites = {"obsDyn1.png", "obsDyn2.png"};
     Texture obsImg;
 
-    public DynamicObstacle(int life, float freq) {
+    public DynamicObstacle(int levelNum, int life, float freq) {
         lifespan = life;
         frequency = freq;
         targetPos = new int[2];
         targetPos[0] = (int) (Math.random() * Gdx.graphics.getWidth());
         targetPos[1] = (int) (Math.random() * Gdx.graphics.getHeight());
 
-        int ranSprite = (int) (Math.random() * (possibleSprites.length));
-        obsImg = new Texture(possibleSprites[ranSprite]);
+        obsImg = new Texture("skin/obsDyn1.png");
     }
 }
 
