@@ -69,7 +69,7 @@ public class MainMenu implements Screen {
         playButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
-                game.setScreen(new PlayScreen(game));
+                game.setScreen(new PlayScreen(game, 1));
             }
 
             @Override
