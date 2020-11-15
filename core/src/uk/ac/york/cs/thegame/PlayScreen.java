@@ -18,19 +18,21 @@ public class PlayScreen implements Screen {
 
     SpriteBatch batch;
     Texture bgTexture;
+    GameLevel levelInfo;
 
-    public PlayScreen(Game gameInstance) {
+    public PlayScreen(Game gameInstance, int levelNum) {
 
         game = gameInstance;
         stage = new Stage(new ScreenViewport());
 
-        bgTexture = new Texture("bg.png");
+        levelInfo = new GameLevel(levelNum);
+        bgTexture = levelInfo.bgImg;
 
         // setup
         var textureRegion = new TextureRegion(bgTexture);
         textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getWidth());
         var bgImage = new Image(textureRegion);
-        bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
 
