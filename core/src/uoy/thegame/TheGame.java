@@ -1,9 +1,10 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import uoy.thegame.view.MainMenuScreen;
 
 /**
  * TheGame is the entrypoint of the game.
@@ -30,7 +31,7 @@ public class TheGame extends Game {
 
 		// go to main menu (load the main menu screen)
 
-		this.setScreen(new MainMenu(this));
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
