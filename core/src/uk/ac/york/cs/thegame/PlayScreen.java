@@ -36,7 +36,7 @@ public class PlayScreen implements Screen {
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
 
-        for (int i = 0; i < levelInfo.currentStageObstacles.size(); i++) {
+        for (int i = 0; i < levelInfo.currentStageObstacles.size(); i++) {              // mostly copied from above setup, non functional
             Obstacle currentObstacle = levelInfo.currentStageObstacles.get(i);
             var obstRegion = new TextureRegion(currentObstacle.obsImg);
             obstRegion.setRegion(currentObstacle.position[0], currentObstacle.position[1], currentObstacle.obsImg.getWidth(), currentObstacle.obsImg.getHeight());

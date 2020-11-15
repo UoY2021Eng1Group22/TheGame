@@ -18,10 +18,10 @@ class Obstacle {
     public Obstacle(int levelNum) {
         position = new int[2];
         position[0] = (int) (Math.random() * Gdx.graphics.getWidth());
-        position[1] = (int) (Math.random() * (Gdx.graphics.getHeight() - 120) +120);
+        position[1] = (int) (Math.random() * (Gdx.graphics.getHeight() - 120) +120);  // Generates random x and y coordinates
 
         int ranSprite = (int) (Math.random() * (possibleSprites[levelNum-1].length));
-        obsImg = new Texture(possibleSprites[levelNum-1][ranSprite]);
+        obsImg = new Texture(possibleSprites[levelNum-1][ranSprite]);       // chooses a sprite from the appropriate set
     }
 }
 
