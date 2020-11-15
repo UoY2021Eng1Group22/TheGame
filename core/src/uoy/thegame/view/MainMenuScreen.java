@@ -1,4 +1,4 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame.view;
 
 // ref: https://libgdx.info/basic_screen/
 
@@ -16,19 +16,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import uoy.thegame.TheGame;
 
 
 /**
  * MainMenu is the title screen for the game.
  */
-public class MainMenu implements Screen {
+public class MainMenuScreen implements Screen {
 
     private final Stage stage;
     private final Game game;
 
     Texture bgTexture;
 
-    public MainMenu(Game gameInstance) {
+    public MainMenuScreen(Game gameInstance) {
 
         // parent game instance, to control the game screen (ApplicationListener)
         game = gameInstance;

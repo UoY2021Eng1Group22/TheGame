@@ -1,4 +1,4 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import uoy.thegame.GameLevel;
 
 public class PlayScreen implements Screen {
 
@@ -26,22 +27,29 @@ public class PlayScreen implements Screen {
         stage = new Stage(new ScreenViewport());
 
         levelInfo = new GameLevel(levelNum);
-        bgTexture = levelInfo.bgImg;
+        bgTexture = levelInfo.getTexture();
 
         // setup
         var textureRegion = new TextureRegion(bgTexture);
-        textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getWidth());
+        textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getHeight());
         var bgImage = new Image(textureRegion);
         bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
 
-        for (int i = 0; i < levelInfo.currentStageObstacles.size(); i++) {              // mostly copied from above setup, non functional
-            Obstacle currentObstacle = levelInfo.currentStageObstacles.get(i);
-            var obstRegion = new TextureRegion(currentObstacle.obsImg);
-            obstRegion.setRegion(currentObstacle.position[0], currentObstacle.position[1], currentObstacle.obsImg.getWidth(), currentObstacle.obsImg.getHeight());
+        var currentStageObstacles = levelInfo.getCurrentStageObstacles();
+
+        for (var currentObstacle : currentStageObstacles) {              // mostly copied from above setup, non functional
+
+            var obsPos = currentObstacle.getPosition();
+            var obsImg = currentObstacle.getObsImg();
+
+            var obstRegion = new TextureRegion(obsImg);
+            obstRegion.setRegion(obsPos[0], obsPos[1], obsImg.getWidth(), obsImg.getHeight());
+
             var obsImage = new Image(obstRegion);
-            obsImage.setPosition(currentObstacle.position[0], currentObstacle.position[1]);
+            obsImage.setPosition(obsPos[0], obsPos[1]);
+
             stage.addActor(obsImage);
         }
 
@@ -69,15 +77,15 @@ public class PlayScreen implements Screen {
     public void show() {
 
         // create actor object
-        var someSquare = new Square(100, 100);
+//        var someSquare = new Square(100, 100);
 
         // handing control over to actor
-        stage.setKeyboardFocus(someSquare);
+//        stage.setKeyboardFocus(someSquare);
 
         Gdx.input.setInputProcessor(stage);
 
         // add actor to stage
-        stage.addActor(someSquare);
+//        stage.addActor(someSquare);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;

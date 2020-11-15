@@ -1,4 +1,4 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;

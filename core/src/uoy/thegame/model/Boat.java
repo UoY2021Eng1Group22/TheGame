@@ -1,14 +1,7 @@
-package uk.ac.york.cs.thegame;
+package uoy.thegame.model;
 
 public class Boat extends Entity {
 
-    enum Type{
-        VerySmall,
-        Small,
-        Medium,
-        Large,
-        VeryLarge
-    }
     float health;
     float acceleration;
     float agility;
@@ -19,7 +12,7 @@ public class Boat extends Entity {
     //max speed indicates the speed stat
     //speed is used for current speed so it starts at 0
     //all boats start at x=0. the starting y pos is different for each boat
-    public Boat(){
+    public Boat() {
         this.health = 3;
         this.acceleration = 3;
         this.maxSpeed = 3;
@@ -27,12 +20,13 @@ public class Boat extends Entity {
         xPos = 0;
         yPos = 0;
     }
-    public Boat(Type t, float y){
+
+    public Boat(Type t, float y) {
         speed = 0;
         exhaustion = 0;
         xPos = 0;
         yPos = y;
-        switch(t){
+        switch (t) {
             case VerySmall:
                 this.health = 1;
                 this.acceleration = 5;
@@ -71,20 +65,14 @@ public class Boat extends Entity {
         }
     }
 
-    //override translate
-    // boats use their agility stat for movements in the y axis
-    // dividing factor on agility is key so jumps are not too big
-    // left movement is slowdown not moving left,
-    // boat still moves right but at a slower speed, until the speed reaches 0
-
     @Override
     public void translate(Direction d) {
 
-        switch(d){
+        switch (d) {
             case Up:
-                this.yPos = this.yPos + agility/10;
+                this.yPos = this.yPos + agility / 10;
             case Down:
-                this.yPos = this.yPos - agility/10;
+                this.yPos = this.yPos - agility / 10;
             case Left: //slowing down
                 speed = decelerate(speed);
                 speed -= exhaustion;
@@ -96,30 +84,48 @@ public class Boat extends Entity {
         }
         exhaustion += 0.01;
     }
-    public float accelerate(float speed){
-        if (speed == maxSpeed){
+
+    //override translate
+    // boats use their agility stat for movements in the y axis
+    // dividing factor on agility is key so jumps are not too big
+    // left movement is slowdown not moving left,
+    // boat still moves right but at a slower speed, until the speed reaches 0
+
+    public float accelerate(float speed) {
+        if (speed == maxSpeed) {
             return speed;
         }
-        speed += speed*(this.acceleration/10);
+        speed += speed * (this.acceleration / 10);
         return speed;
 
     }
-    public float decelerate(float speed){
-        if (speed <= 0){
-            speed=0;
+
+    public float decelerate(float speed) {
+        if (speed <= 0) {
+            speed = 0;
             return speed;
         }
-        speed -= speed*(this.acceleration/10);
-        if (speed < 0){
+        speed -= speed * (this.acceleration / 10);
+        if (speed < 0) {
             speed = 0;
         }
         return speed;
     }
-    public float checkHealth(){
+
+    public float checkHealth() {
         return this.health;
     }
-    public void decreaseHealth(){
-        this.health -=1;
+
+    public void decreaseHealth() {
+        this.health -= 1;
+    }
+
+    enum Type {
+        VerySmall,
+        Small,
+        Medium,
+        Large,
+        VeryLarge
     }
 
 }
