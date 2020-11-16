@@ -8,9 +8,9 @@ import uoy.thegame.view.MainMenuScreen;
 
 /**
  * TheGame is the entrypoint of the game.
- * <p>
+ *
  * This class loads the game skin and font, and sets the screen to MainMenu.
- * <p>
+ *
  * No game logic should live here.
  */
 public class TheGame extends Game {

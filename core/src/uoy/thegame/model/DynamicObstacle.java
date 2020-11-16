@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class DynamicObstacle extends Obstacle {
-    int lifespan;
-    float frequency;
-    int[] targetPos;
-    Texture obsImg;
+    private final int lifespan;
+    private final float frequency;
+    private final int[] targetPos;
+    private final Texture obsImg;
 
     public DynamicObstacle(int levelNum, int life, float freq) {
         super(levelNum);

@@ -12,15 +12,12 @@ enum Direction {
 }
 
 abstract class Entity extends Actor {
-    //    private float width;
-//    private float height;
+
     private final Texture texture;
     private float xPos;
     private float yPos;
-    private float speed;
 
     public Entity(float x, float y, Texture texture) {
-
         this.texture = texture;
 
         this.setBounds(xPos, yPos, this.texture.getWidth(), this.texture.getHeight());
@@ -51,19 +48,23 @@ abstract class Entity extends Actor {
         this.yPos = y;
     }
 
-    public void translate(Direction d) {
-
-        switch (d) {
-            case Up:
-                this.yPos += speed;
-            case Down:
-                this.yPos -= speed;
-            case Left:
-                this.xPos -= speed;
-            case Right:
-                this.xPos += speed;
-        }
+    public void translate() {
 
     }
+
+//    public void translate(Direction d) {
+//
+//        switch (d) {
+//            case Up:
+//                this.yPos += speed;
+//            case Down:
+//                this.yPos -= speed;
+//            case Left:
+//                this.xPos -= speed;
+//            case Right:
+//                this.xPos += speed;
+//        }
+//
+//    }
 
 }

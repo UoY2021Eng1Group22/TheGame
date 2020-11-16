@@ -4,11 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 
-public class Obstacle extends Entity {
-    private static final String[][] possibleSprites = {{"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs3.png", "obstacles/obs4.png"}, {"obstacles/obs5.png"}};
+public abstract class Obstacle extends Entity {
+    private static final String[][] possibleSprites = {
+            {"obstacles/obs1.png", "obstacles/obs2.png"},
+            {"obstacles/obs1.png", "obstacles/obs2.png"},
+            {"obstacles/obs3.png", "obstacles/obs4.png"},
+            {"obstacles/obs5.png", "obstacles/obs5.png"}
+    };
     //    private final Sprite obsImg;
     private int capableDamage;
-
 
     public Obstacle(int levelNum) {
 
@@ -18,14 +22,13 @@ public class Obstacle extends Entity {
                 new Texture(possibleSprites[levelNum - 1][getRandomSprite(levelNum)])
         );
 
-
-//        obsImg = new Sprite( new Texture(possibleSprites[levelNum - 1][randomSprite]));       // chooses a sprite from the appropriate set
+// chooses a sprite from the appropriate set
+//        obsImg = new Sprite( new Texture(possibleSprites[levelNum - 1][randomSprite]));
 
 //        this.setPosition(
 //                (int) (Math.random() * Gdx.graphics.getWidth()), // Generates random x and y coordinates
 //                (int) (Math.random() * (Gdx.graphics.getHeight() - 120) + 120)
 //        );
-
 
 //        setBounds(obsImg.getX(),obsImg.getY(),obsImg.getWidth(), obsImg.getHeight());
     }

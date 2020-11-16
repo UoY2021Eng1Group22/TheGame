@@ -1,10 +1,13 @@
 package uoy.thegame.model;
 
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Boat is an abstract object
  */
 abstract class Boat extends Entity {
 
+    private float speed;
     private float health;
     private float acceleration;
     private float agility;
@@ -26,18 +29,18 @@ abstract class Boat extends Entity {
 //        yPos = 0;
 //    }
 
-    public Boat() {
-        // default!
-        this(Type.Medium, 0, 0);
-    }
+//    public Boat() {
+//        // default!
+//        this(0, 0, BoatType.Medium);
+//    }
 
-    public Boat(Type t, float x, float y) {
-        super();
-        speed = 0;
-        exhaustion = 0;
-        xPos = 0;
-        yPos = y;
-        switch (t) {
+    public Boat(float x, float y, BoatType type, Texture texture) {
+        super(x, y, texture);
+
+        this.speed = 0;
+        this.exhaustion = 0;
+
+        switch (type) {
             case VerySmall:
                 this.health = 1;
                 this.acceleration = 5;
@@ -76,12 +79,12 @@ abstract class Boat extends Entity {
         }
     }
 
-    @Override
+    //    @Override
     public void translate(Direction d) {
 
         switch (d) {
             case Up:
-                this.yPos = this.yPos + agility / 10;
+                this.yPos = this.yPos + this.agility / 10;
             case Down:
                 this.yPos = this.yPos - agility / 10;
             case Left: //slowing down
@@ -131,7 +134,7 @@ abstract class Boat extends Entity {
         this.health -= 1;
     }
 
-    enum Type {
+    enum BoatType {
         VerySmall,
         Small,
         Medium,
