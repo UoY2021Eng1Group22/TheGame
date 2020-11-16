@@ -66,8 +66,8 @@ public class GameLevel {
         }
 
         for (int i = 0; i < movingObstacles; i++) {
-            Obstacle startMovObst = new MovingObstacle(currentStage);
-            // currentStageObstacles.add(startMovObst);                 // not yet functional
+            MovingObstacle startMovObst = new MovingObstacle(currentStage);
+            currentStageObstacles.add(startMovObst);                 // not yet functional
         }
 
 
