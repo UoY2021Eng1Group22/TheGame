@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class MovingObstacle extends Obstacle {
     int speed;
-    String[] possibleSprites = {"skin/obsMov1.gif", "skin/obsMov2.gif", "skin/obsMov3.gif"};
+    String[] possibleSprites = {"obstacles/obsMov1.gif", "obstacles/obsMov2.gif", "obstacles/obsMov3.gif"};
     Texture obsImg;
 
     public MovingObstacle(int levelNum) {

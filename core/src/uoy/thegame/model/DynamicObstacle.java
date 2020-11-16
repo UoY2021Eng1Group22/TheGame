@@ -17,6 +17,6 @@ public class DynamicObstacle extends Obstacle {
         targetPos[0] = (int) (Math.random() * Gdx.graphics.getWidth());
         targetPos[1] = (int) (Math.random() * Gdx.graphics.getHeight());
 
-        obsImg = new Texture("skin/obsDyn1.png");
+        obsImg = new Texture("obstacles/obsDyn1.png");
     }
 }

@@ -5,9 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 
 
 public class Obstacle extends Entity {
-    private static final String[][] possibleSprites = {{"skin/obs1.png", "skin/obs2.png"}, {"skin/obs1.png", "skin/obs2.png"}, {"skin/obs3.png", "skin/obs4.png"}, {"skin/obs5.png"}};
+    private static final String[][] possibleSprites = {{"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs3.png", "obstacles/obs4.png"}, {"obstacles/obs5.png"}};
     //    private final Sprite obsImg;
     private int capableDamage;
+
 
     public Obstacle(int levelNum) {
 

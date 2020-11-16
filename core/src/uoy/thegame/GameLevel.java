@@ -32,28 +32,28 @@ public class GameLevel {
                 movingObstacles = 1;
                 dynamicObstacles = 0;
                 amountOfOpponents = 0;
-                bgImg = new Texture("skin/stage1.png");
+                bgImg = new Texture("stages/stage1.png");
                 break;
             case 2:            // level two info
                 stationaryObstacles = 5;
                 movingObstacles = 3;
                 dynamicObstacles = 0;
                 amountOfOpponents = 7;
-                bgImg = new Texture("skin/stage1.png");
+                bgImg = new Texture("stages/stage1.png");
                 break;
             case 3:            // level three info
                 stationaryObstacles = 9;
                 movingObstacles = 5;
                 dynamicObstacles = 0;
                 amountOfOpponents = 7;
-                bgImg = new Texture("skin/stage2.png");
+                bgImg = new Texture("stages/stage2.PNG");
                 break;
             case 4:             // level four info
                 stationaryObstacles = 15;
                 movingObstacles = 8;
                 dynamicObstacles = 2;
                 amountOfOpponents = 3;
-                bgImg = new Texture("skin/stage3.png");
+                bgImg = new Texture("stages/stage3.PNG");
                 break;
             default:
                 throw new UnsupportedOperationException("Stage not implemented");
