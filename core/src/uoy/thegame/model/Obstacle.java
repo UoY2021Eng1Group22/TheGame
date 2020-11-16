@@ -16,14 +16,14 @@ public abstract class Obstacle extends Entity {
 
     public Obstacle(int levelNum) {
 
+        int xp = (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60);
+        int yp = (int) (Math.random() * (Gdx.graphics.getHeight()-75-101) + 75);
+
         super(
-                (int) (Math.random() * Gdx.graphics.getWidth()),
-                (int) (Math.random() * (Gdx.graphics.getHeight() - 120) + 120),
+                xp,
+                yp,
                 new Texture(possibleSprites[levelNum - 1][getRandomSprite(levelNum)])
         );
-
-// chooses a sprite from the appropriate set
-//        obsImg = new Sprite( new Texture(possibleSprites[levelNum - 1][randomSprite]));
 
 //        this.setPosition(
 //                (int) (Math.random() * Gdx.graphics.getWidth()), // Generates random x and y coordinates
@@ -32,6 +32,10 @@ public abstract class Obstacle extends Entity {
 
 //        setBounds(obsImg.getX(),obsImg.getY(),obsImg.getWidth(), obsImg.getHeight());
     }
+
+//    public int[] getPosition() {
+//        return new int[]{(int)obsImg.getX(),(int)obsImg.getY()};
+//    }
 
     private static int getRandomSprite(int levelNum) {
         return (int) (Math.random() * (possibleSprites[levelNum - 1].length));
