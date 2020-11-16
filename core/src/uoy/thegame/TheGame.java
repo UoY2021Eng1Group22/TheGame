@@ -18,6 +18,8 @@ public class TheGame extends Game {
 	// superclass changed from ApplicationListener to Game
 	// to utilise Screen interface
 
+	// TODO: move all config values out of source-code (for easier modification)
+
 	static public Skin gameSkin;
 	static public BitmapFont font;
 

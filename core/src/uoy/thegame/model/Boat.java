@@ -1,27 +1,38 @@
 package uoy.thegame.model;
 
-public class Boat extends Entity {
+/**
+ * Boat is an abstract object
+ */
+abstract class Boat extends Entity {
 
-    float health;
-    float acceleration;
-    float agility;
-    float maxSpeed;
-    float exhaustion;
-    int racePosition;
+    private float health;
+    private float acceleration;
+    private float agility;
+    private float maxSpeed;
+    private float exhaustion;
+    private int racePosition;
 
-    //max speed indicates the speed stat
-    //speed is used for current speed so it starts at 0
-    //all boats start at x=0. the starting y pos is different for each boat
+    // max speed indicates the speed stat
+    // speed is used for current speed so it starts at 0
+    // all boats start at x=0. the starting y pos is different for each boat
+
+//    public Boat() {
+//        super();
+//        this.health = 3;
+//        this.acceleration = 3;
+//        this.maxSpeed = 3;
+//        this.agility = 3;
+//        xPos = 0;
+//        yPos = 0;
+//    }
+
     public Boat() {
-        this.health = 3;
-        this.acceleration = 3;
-        this.maxSpeed = 3;
-        this.agility = 3;
-        xPos = 0;
-        yPos = 0;
+        // default!
+        this(Type.Medium, 0, 0);
     }
 
-    public Boat(Type t, float y) {
+    public Boat(Type t, float x, float y) {
+        super();
         speed = 0;
         exhaustion = 0;
         xPos = 0;
@@ -85,7 +96,7 @@ public class Boat extends Entity {
         exhaustion += 0.01;
     }
 
-    //override translate
+    // override translate
     // boats use their agility stat for movements in the y axis
     // dividing factor on agility is key so jumps are not too big
     // left movement is slowdown not moving left,

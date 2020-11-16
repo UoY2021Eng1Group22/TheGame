@@ -27,8 +27,6 @@ public class MainMenuScreen implements Screen {
     private final Stage stage;
     private final Game game;
 
-    Texture bgTexture;
-
     public MainMenuScreen(Game gameInstance) {
 
         // parent game instance, to control the game screen (ApplicationListener)
@@ -37,16 +35,38 @@ public class MainMenuScreen implements Screen {
         // setup the stage
         stage = new Stage(new ScreenViewport());
 
+    }
+
+    @Override
+    public void resize(int width, int height) {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    // analogous to create()
+    @Override
+    public void show() {
+
         // background, wraps + repeats
-        bgTexture = new Texture("skin/dirt.png");
+        var bgTexture = new Texture("skin/dirt.png");
         bgTexture.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 
         // setup
         var textureRegion = new TextureRegion(bgTexture);
         textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getWidth());
+
+        // actor-ify
         var bgImage = new Image(textureRegion);
         bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
+
+        // add to stage
         stage.addActor(bgImage);
 
         // title
@@ -67,10 +87,12 @@ public class MainMenuScreen implements Screen {
                 Gdx.graphics.getWidth() / 2f - playButton.getWidth() / 2f,
                 Gdx.graphics.getHeight() / 2f - playButton.getHeight() / 2f
         );
+
+        // input event listening
         playButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
-                game.setScreen(new PlayScreen(game, 1));
+                game.setScreen(new PlayScreen(game, 1)); // go to next screen (play screen)
             }
 
             @Override
@@ -103,27 +125,7 @@ public class MainMenuScreen implements Screen {
 
         stage.addActor(quitButton);
 
-    }
-
-    public void create() {
-
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void show() {
+        // set listener to current stage
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -138,10 +140,6 @@ public class MainMenuScreen implements Screen {
 
         stage.act();
         stage.draw();
-
-//		batch.begin();
-//		batch.draw(img, 0, 0);
-//		batch.end();
     }
 
 
