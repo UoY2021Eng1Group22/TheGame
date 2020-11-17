@@ -60,14 +60,17 @@ public class GameLevel {
         }
 
         currentStageObstacles = new ArrayList<>();
+
         for (int i = 0; i < stationaryObstacles; i++) {     // Creates amount of stationary obstacles for how many should be on this stage
-            currentStageObstacles.add(new Obstacle(currentStage));
+            currentStageObstacles.add(new Obstacle(currentStage, i));
             currentTotalObstacles++;
+
         }
 
         for (int i = 0; i < movingObstacles; i++) {
-            MovingObstacle startMovObst = new MovingObstacle(currentStage);
+            MovingObstacle startMovObst = new MovingObstacle(currentStage, i);
             currentStageObstacles.add(startMovObst);                 // not yet functional
+
         }
 
 

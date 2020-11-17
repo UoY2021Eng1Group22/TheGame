@@ -13,14 +13,21 @@ public class Obstacle extends Actor {
     String[][] possibleSprites;
 
 
-    public Obstacle(int levelNum) {
+    public Obstacle(int levelNum, int i ) {
 
         possibleSprites = new String[][]{{"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs1.png", "obstacles/obs2.png"}, {"obstacles/obs3.png", "obstacles/obs4.png"}, {"obstacles/obs5.png"}};
         var ranSprite = (int) (Math.random() * (possibleSprites[levelNum - 1].length));
         obsImg = new Sprite( new Texture(possibleSprites[levelNum - 1][ranSprite]));       // chooses a sprite from the appropriate set
 
         int xp = (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60);
-        int yp = (int) (Math.random() * (Gdx.graphics.getHeight()-75-101) + 75);
+       // int yp = (int) (Math.random() * (Gdx.graphics.getHeight()-75-101) + 75);
+       //using 50 as a multiplyer spaces the obstacles out well
+        //if y gets too big then we make it smaller
+        int yp = i*50;
+        if(yp > 404){
+            yp -= 101;
+        }
+
         this.setPosition(
                 xp, // Generates random x and y coordinates
                 yp

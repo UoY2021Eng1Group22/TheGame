@@ -10,7 +10,7 @@ public class DynamicObstacle extends Obstacle {
     Texture obsImg;
 
     public DynamicObstacle(int levelNum, int life, float freq) {
-        super(levelNum);
+        super(levelNum, 0);
         lifespan = life;
         frequency = freq;
         targetPos = new int[2];

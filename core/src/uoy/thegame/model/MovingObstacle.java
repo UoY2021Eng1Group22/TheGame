@@ -8,15 +8,16 @@ public class MovingObstacle extends Obstacle {
     int speed;
     String[] possibleSprites;
 
-    public MovingObstacle(int levelNum) {
+    public MovingObstacle(int levelNum, int i) {
 
-        super(levelNum);
+        super(levelNum, i);
         possibleSprites = new String[]{"goose/1.png", "obstacles/obsMov2.gif", "obstacles/obsMov3.gif"};
 
         super.setPosition(
-                (int) (Math.random() * Gdx.graphics.getWidth()),
-                (int) (Math.random() * Gdx.graphics.getHeight())
-        );
+                (int) (Math.random() * Gdx.graphics.getWidth()), i*60);
+                //(int) (Math.random() * Gdx.graphics.getHeight())
+
+
 
         obsImg = new Sprite(new Texture(possibleSprites[levelNum - 1]));
 
