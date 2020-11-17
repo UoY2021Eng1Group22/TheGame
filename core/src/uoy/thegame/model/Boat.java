@@ -34,6 +34,9 @@ abstract class Boat extends Entity {
 //        this(0, 0, BoatType.Medium);
 //    }
 
+    // TODO: getter/setter for all the properties
+    // Note: make java beans? -> implements serializable
+
     public Boat(float x, float y, BoatType type, Texture texture) {
         super(x, y, texture);
 
@@ -82,21 +85,41 @@ abstract class Boat extends Entity {
     //    @Override
     public void translate(Direction d) {
 
+//        switch (d) {
+//            case Up:
+//                this.yPos = this.yPos + this.agility / 10;
+//            case Down:
+//                this.yPos = this.yPos - this.agility / 10;
+//            case Left: //slowing down
+//                speed = decelerate(speed);
+//                speed -= exhaustion;
+//                this.xPos = this.xPos + speed;
+//            case Right:
+//                speed = accelerate(speed);
+//                speed -= exhaustion;
+//                this.xPos = this.xPos + speed;
+//        }
+
         switch (d) {
             case Up:
-                this.yPos = this.yPos + this.agility / 10;
+                this.translate(0, this.getyPos() + this.agility / 10);
+                break;
             case Down:
-                this.yPos = this.yPos - agility / 10;
-            case Left: //slowing down
-                speed = decelerate(speed);
-                speed -= exhaustion;
-                this.xPos = this.xPos + speed;
+                this.translate(0, this.getyPos() - this.agility / 10);
+                break;
+            case Left:
+                this.speed = this.decelerate(this.speed);
+                this.speed -= this.exhaustion;
+                this.translate(this.getxPos() + speed, 0);
+                break;
             case Right:
-                speed = accelerate(speed);
-                speed -= exhaustion;
-                this.xPos = this.xPos + speed;
+                this.speed = this.accelerate(this.speed);
+                this.speed -= this.exhaustion;
+                this.translate(this.getxPos() + speed, 0);
+                break;
         }
-        exhaustion += 0.01;
+
+        this.exhaustion += 0.01;
     }
 
     // override translate
@@ -105,16 +128,15 @@ abstract class Boat extends Entity {
     // left movement is slowdown not moving left,
     // boat still moves right but at a slower speed, until the speed reaches 0
 
-    public float accelerate(float speed) {
+    private float accelerate(float speed) {
         if (speed == maxSpeed) {
             return speed;
         }
         speed += speed * (this.acceleration / 10);
         return speed;
-
     }
 
-    public float decelerate(float speed) {
+    private float decelerate(float speed) {
         if (speed <= 0) {
             speed = 0;
             return speed;
@@ -126,7 +148,7 @@ abstract class Boat extends Entity {
         return speed;
     }
 
-    public float checkHealth() {
+    public float getHealth() {
         return this.health;
     }
 

@@ -17,6 +17,11 @@ abstract class Entity extends Actor {
     private float xPos;
     private float yPos;
 
+    // Note: extract Texture out as a class method (for assigning class variable)
+    // throw error if texture is NullPointer
+
+    // method: setPosition (setX, setY), translate (x, y)
+
     public Entity(float x, float y, Texture texture) {
         this.texture = texture;
 
@@ -48,8 +53,9 @@ abstract class Entity extends Actor {
         this.yPos = y;
     }
 
-    public void translate() {
-
+    public void translate(float x, float y) {
+        this.xPos += x;
+        this.yPos += y;
     }
 
 //    public void translate(Direction d) {

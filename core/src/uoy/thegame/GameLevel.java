@@ -1,8 +1,10 @@
 package uoy.thegame;
 
 import com.badlogic.gdx.graphics.Texture;
+import uoy.thegame.model.DynamicObstacle;
 import uoy.thegame.model.MovingObstacle;
 import uoy.thegame.model.Obstacle;
+import uoy.thegame.model.StationaryObstacle;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class GameLevel {
     private final int movingObstacles;
     private final int dynamicObstacles;
     private final int amountOfOpponents;
-    private int currentTotalObstacles;
+    private final int currentTotalObstacles;
 
     // will give the information associated with a certain level number, as well as generate the starting obstacles
     public GameLevel(int stageNo) {
@@ -59,16 +61,27 @@ public class GameLevel {
                 throw new UnsupportedOperationException("Stage not implemented");
         }
 
-        currentStageObstacles = new ArrayList<>();
-        for (int i = 0; i < stationaryObstacles; i++) {     // Creates amount of stationary obstacles for how many should be on this stage
-            currentStageObstacles.add(new Obstacle(currentStage));
-            currentTotalObstacles++;
-        }
 
-        for (int i = 0; i < movingObstacles; i++) {
-            var startMovObst = new MovingObstacle(currentStage);
-            // currentStageObstacles.add(startMovObst);                 // not yet functional
-        }
+        // moved
+//        currentStageObstacles = new ArrayList<>();
+//        for (int i = 0; i < stationaryObstacles; i++) {     // Creates amount of stationary obstacles for how many should be on this stage
+//            currentStageObstacles.add(new Obstacle(currentStage));
+//            currentTotalObstacles++;
+//        }
+//
+//        for (int i = 0; i < movingObstacles; i++) {
+//            var startMovObst = new MovingObstacle(currentStage);
+//            // currentStageObstacles.add(startMovObst);                 // not yet functional
+//        }
+
+        var obstacleGenerator = new ObstacleGenerator(currentStage);
+        this.currentStageObstacles = obstacleGenerator.generateObstacles(
+                stationaryObstacles,
+                movingObstacles,
+                dynamicObstacles
+        );
+
+        // subroutine: generateOpponents
 
 
     }
@@ -79,6 +92,38 @@ public class GameLevel {
 
     public ArrayList<Obstacle> getCurrentStageObstacles() {
         return currentStageObstacles;
+    }
+}
+
+class ObstacleGenerator {
+
+    private final int levelNum;
+
+    ObstacleGenerator(int levelNum) {
+        this.levelNum = levelNum;
+    }
+
+    ArrayList<Obstacle> generateObstacles(int stationary, int moving, int dynamic) {
+
+        // "generic obstacles"
+        // can contain any obstacles and its subclass
+
+        var obstacles = new ArrayList<Obstacle>();
+
+        for (int i = 0; i < stationary; i++) {
+            obstacles.add(new StationaryObstacle(levelNum));
+        }
+
+        for (int i = 0; i < moving; i++) {
+            obstacles.add(new MovingObstacle(levelNum));
+        }
+
+        for (int i = 0; i < dynamic; i++) {
+            obstacles.add(new DynamicObstacle(levelNum, 10, 10));
+        }
+
+        return obstacles;
+
     }
 }
 
