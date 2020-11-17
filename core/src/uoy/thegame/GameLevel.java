@@ -1,6 +1,7 @@
 package uoy.thegame;
 
 import com.badlogic.gdx.graphics.Texture;
+import uoy.thegame.model.Boat;
 import uoy.thegame.model.MovingObstacle;
 import uoy.thegame.model.Obstacle;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class GameLevel {
 
     private final ArrayList<Obstacle> currentStageObstacles;
+    private final ArrayList<Boat> currentStageEnemies;
     private final int currentStage;
     private final Texture bgImg;
     private final int stationaryObstacles;
@@ -60,6 +62,7 @@ public class GameLevel {
         }
 
         currentStageObstacles = new ArrayList<>();
+        currentStageEnemies = new ArrayList<>();
 
         for (int i = 0; i < stationaryObstacles; i++) {     // Creates amount of stationary obstacles for how many should be on this stage
             currentStageObstacles.add(new Obstacle(currentStage, i));
@@ -73,6 +76,10 @@ public class GameLevel {
 
         }
 
+        for (int k = 0; k <amountOfOpponents; k++) {
+            currentStageEnemies.add(new Boat());
+        }
+
 
     }
 
@@ -82,6 +89,10 @@ public class GameLevel {
 
     public ArrayList<Obstacle> getCurrentStageObstacles() {
         return currentStageObstacles;
+    }
+
+    public ArrayList<Boat> getCurrentStageEnemies() {
+        return currentStageEnemies;
     }
 }
 

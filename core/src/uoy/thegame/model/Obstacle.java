@@ -19,7 +19,7 @@ public class Obstacle extends Actor {
         var ranSprite = (int) (Math.random() * (possibleSprites[levelNum - 1].length));
         obsImg = new Sprite( new Texture(possibleSprites[levelNum - 1][ranSprite]));       // chooses a sprite from the appropriate set
 
-        int xp = (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60);
+        int xp = (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60); // obstacles will spawn 60 pixels from each side
        // int yp = (int) (Math.random() * (Gdx.graphics.getHeight()-75-101) + 75);
        //using 50 as a multiplyer spaces the obstacles out well
         //if y gets too big then we make it smaller

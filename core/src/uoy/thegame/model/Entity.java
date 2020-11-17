@@ -1,6 +1,7 @@
 package uoy.thegame.model;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 enum Direction {
     Up,
@@ -9,7 +10,7 @@ enum Direction {
     Right
 }
 
-public class Entity {
+public class Entity extends Actor {
     float xPos;
     float yPos;
     float width;
@@ -17,8 +18,6 @@ public class Entity {
     Texture sprite;
     float speed;
 
-    public void remove() {
-    }
 
     public void translate(Direction d) {
 

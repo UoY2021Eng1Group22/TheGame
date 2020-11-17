@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uoy.thegame.GameLevel;
+import uoy.thegame.model.Boat;
 import uoy.thegame.model.Obstacle;
 
 public class PlayScreen implements Screen {
@@ -43,6 +44,12 @@ public class PlayScreen implements Screen {
 
         for (Obstacle currentObstacle : currentStageObstacles) {              // mostly copied from above setup, non functional
             stage.addActor(currentObstacle);
+        }
+
+        var currentStageEnemies = levelInfo.getCurrentStageEnemies();
+
+        for (Boat currentEnemy : currentStageEnemies) {
+            stage.addActor(currentEnemy);
         }
 
 
