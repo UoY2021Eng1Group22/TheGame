@@ -1,15 +1,59 @@
 package uoy.thegame.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class PlayerBoat extends Boat {
-    public PlayerBoat(float x, float y, BoatType type, Texture texture) {
+
+    private boolean controllable;
+
+    public PlayerBoat(int x, int y, BoatType type, Texture texture) {
         super(x, y, type, texture);
+        this.controllable = false;
+
+        this.addListener(new InputListener() {
+
+            public boolean keyTyped(InputEvent ev, char character) {
+                var instance = (PlayerBoat) ev.getTarget();
+
+                Gdx.app.log("Control",
+                        String.format("user key typed: %c", character)
+                );
+
+                if (instance.isControllable()) {
+                    switch (character) {
+                        case 'w':
+                            instance.translate(Direction.Up);
+                            break;
+                        case 's':
+                            instance.translate(Direction.Down);
+                            break;
+                        case 'a':
+                            instance.translate(Direction.Left);
+                            break;
+                        case 'd':
+                            instance.translate(Direction.Right);
+                            break;
+                    }
+                }
+                return false;
+            }
+
+        });
+
     }
 
-    // TODO: refactor to InputListener (obviously)
+    public boolean isControllable() {
+        return controllable;
+    }
 
-    public void move() {
+    public void setControllable(boolean controllable) {
+        this.controllable = controllable;
+    }
+
+//    public void move() {
 //        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
 //            this.translate(Direction.Right);
 //        }
@@ -22,5 +66,5 @@ public class PlayerBoat extends Boat {
 //        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
 //            this.translate(Direction.Up);
 //        }
-    }
+//    }
 }

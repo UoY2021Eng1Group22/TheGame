@@ -11,12 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uoy.thegame.GameLevel;
-import uoy.thegame.model.Obstacle;
+import uoy.thegame.model.Boat;
+import uoy.thegame.model.PlayerBoat;
 
 public class PlayScreen implements Screen {
 
     private final Stage stage;
-    private final Game game;
+    private final Game game; // placeholder for going to the next screen
 
     SpriteBatch batch;
     Texture bgTexture;
@@ -40,10 +41,10 @@ public class PlayScreen implements Screen {
 
         var currentStageObstacles = levelInfo.getCurrentStageObstacles();
 
-        for (Obstacle currentObstacle : currentStageObstacles) {              // mostly copied from above setup, non functional
+        // mostly copied from above setup, non functional (???)
+        for (var currentObstacle : currentStageObstacles) {
             stage.addActor(currentObstacle);
         }
-
 
     }
 
@@ -61,6 +62,21 @@ public class PlayScreen implements Screen {
 
     @Override
     public void show() {
+
+        // placeholder player boat, to test the user controls
+
+        var playerBoat = new PlayerBoat(16, 16,
+                Boat.BoatType.VeryLarge,
+                new Texture("obstacles/obs2.png")
+        );
+
+        playerBoat.setControllable(true);
+
+        // handing control over to actor
+
+        stage.setKeyboardFocus(playerBoat);
+        stage.addActor(playerBoat);
+
         Gdx.input.setInputProcessor(stage);
     }
 

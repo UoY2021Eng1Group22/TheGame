@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * Boat is an abstract object
  */
-abstract class Boat extends Entity {
+public abstract class Boat extends Entity {
 
     private float speed;
     private float health;
@@ -156,7 +156,7 @@ abstract class Boat extends Entity {
         this.health -= 1;
     }
 
-    enum BoatType {
+    public enum BoatType {
         VerySmall,
         Small,
         Medium,

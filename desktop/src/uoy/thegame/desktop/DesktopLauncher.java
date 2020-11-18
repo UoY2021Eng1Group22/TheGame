@@ -14,6 +14,7 @@ public class DesktopLauncher {
 
         config.setTitle("the-game");
         config.setWindowedMode(1159, 408);
+        config.setResizable(false); // viewport is not responsive
 
         // start the game
         new Lwjgl3Application(new TheGame(), config);
