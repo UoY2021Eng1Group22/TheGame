@@ -35,14 +35,14 @@ public class GameLevel {
                 stationaryObstacles = 5;
                 movingObstacles = 3;
                 dynamicObstacles = 0;
-                amountOfOpponents = 7;
+                amountOfOpponents = 6;
                 bgImg = new Texture("stages/stage1.png");
                 break;
             case 3:            // level three info
                 stationaryObstacles = 9;
                 movingObstacles = 5;
                 dynamicObstacles = 0;
-                amountOfOpponents = 7;
+                amountOfOpponents = 6;
                 bgImg = new Texture("stages/stage2.PNG");
                 break;
             case 4:             // level four info
@@ -80,10 +80,10 @@ public class GameLevel {
 
         // subroutine: generateOpponents
 
-        for (int k = 0; k < amountOfOpponents; k++) {
-//            currentStageEnemies.add(new Boat());
+/*        for (int k = 0; k < amountOfOpponents; k++) {
+            currentStageEnemies.add(new Boat());
         }
-
+*/
 
     }
 
