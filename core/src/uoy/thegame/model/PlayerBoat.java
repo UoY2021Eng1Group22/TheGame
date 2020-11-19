@@ -25,16 +25,16 @@ public class PlayerBoat extends Boat {
                 if (instance.isControllable()) {
                     switch (character) {
                         case 'w':
-                            instance.translate(Direction.Up);
+                            instance.translateBoat(Direction.Up);
                             break;
                         case 's':
-                            instance.translate(Direction.Down);
+                            instance.translateBoat(Direction.Down);
                             break;
                         case 'a':
-                            instance.translate(Direction.Left);
+                            instance.translateBoat(Direction.Left);
                             break;
                         case 'd':
-                            instance.translate(Direction.Right);
+                            instance.translateBoat(Direction.Right);
                             break;
                     }
                 }
