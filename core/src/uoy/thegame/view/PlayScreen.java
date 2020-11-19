@@ -53,10 +53,6 @@ public class PlayScreen implements Screen {
 
     }
 
-    public void create() {
-
-    }
-
     @Override
     public void resize(int width, int height) {
 

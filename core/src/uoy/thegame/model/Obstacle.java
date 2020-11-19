@@ -18,13 +18,17 @@ public abstract class Obstacle extends Entity {
 
         // textures are passed in from concretes
 
+        // initialise superclass
+
         super(
                 (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60),
                 (int) (Math.random() * (Gdx.graphics.getHeight() - 75 - 101) + 75),
                 texture
         );
 
-        // using 50 as a multiplyer spaces the obstacles out well
+
+        // logic: set proper calculated y position
+        // using 50 as a multiplier spaces the obstacles out well
         // if y gets too big then we make it smaller
 
         int yp = i * 50;
@@ -32,7 +36,7 @@ public abstract class Obstacle extends Entity {
             yp -= 101;
         }
 
-        this.setY(yp);
+        this.setyPos(yp);
     }
 
     /**
