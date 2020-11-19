@@ -3,18 +3,11 @@ package uoy.thegame.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-
 public abstract class Obstacle extends Entity {
-    private static final String[][] possibleSprites = {
-            {"obstacles/obs1.png", "obstacles/obs2.png"},
-            {"obstacles/obs1.png", "obstacles/obs2.png"},
-            {"obstacles/obs3.png", "obstacles/obs4.png"},
-            {"obstacles/obs5.png", "obstacles/obs5.png"}
-    };
 
     private int capableDamage;
 
-    public Obstacle(int levelNum, int i, Texture texture) {
+    public Obstacle(int i, Texture texture) {
 
         // textures are passed in from concretes
 

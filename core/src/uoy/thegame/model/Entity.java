@@ -66,7 +66,7 @@ abstract class Entity extends Actor {
         this.yPos += y;
     }
 
-//    public void translate(Direction d) {
+    //    public void translate(Direction d) {
 //
 //        switch (d) {
 //            case Up:

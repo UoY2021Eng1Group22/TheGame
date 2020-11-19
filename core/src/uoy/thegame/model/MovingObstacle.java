@@ -16,22 +16,17 @@ public class MovingObstacle extends Obstacle {
     public MovingObstacle(int levelNum, int i) {
 
         super(
-                levelNum,
                 i,
                 new Texture(possibleSprites[getRandomSprite(possibleSprites)])
         );
 
-        super.setPosition(
-                (int) (Math.random() * Gdx.graphics.getWidth()), i*60);
+        super.setPosition((int) (Math.random() * Gdx.graphics.getWidth()), i * 60);
 
 //        super.setPosition(
 //                (int) (Math.random() * Gdx.graphics.getWidth()),
 //                (int) (Math.random() * Gdx.graphics.getHeight())
 //        );
-//
-//        obsImg = new Sprite(new Texture(possibleSprites[levelNum - 1]));
-//
-//        obsImg.setScale(0.1f);
+
     }
 
     void detectObstacle() {
