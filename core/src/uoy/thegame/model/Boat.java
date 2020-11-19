@@ -84,23 +84,8 @@ public abstract class Boat extends Entity {
         }
     }
 
-    //    @Override
-    public void translate(Direction d) {
 
-//        switch (d) {
-//            case Up:
-//                this.yPos = this.yPos + this.agility / 10;
-//            case Down:
-//                this.yPos = this.yPos - this.agility / 10;
-//            case Left: //slowing down
-//                speed = decelerate(speed);
-//                speed -= exhaustion;
-//                this.xPos = this.xPos + speed;
-//            case Right:
-//                speed = accelerate(speed);
-//                speed -= exhaustion;
-//                this.xPos = this.xPos + speed;
-//        }
+    public void translateBoat(Direction d) {
 
         switch (d) {
             case Up:
@@ -115,18 +100,18 @@ public abstract class Boat extends Entity {
 
                 break;
             case Right:
+                //upon moving forward the has started bool is set to true which starts the exhaustion
+                //value being decreased
+                //the speed only increases if it isn't already at the max speed
                 hasStarted = true;
                 if (speed <= maxSpeed/5){
                     this.speed = this.accelerate(this.speed);
 
                 }
 
-
-
                 break;
 
         }
-
 
     }
 
@@ -158,6 +143,10 @@ public abstract class Boat extends Entity {
         return speed;
     }
 
+    //the act function runs constantly once the game has started
+    //this is used to keep the boat moving constantly at its current speed
+    //exhaustion is decreased here, however this only starts once the
+    //boat has started moving
     @Override
     public void act(float delta) {
 
@@ -168,6 +157,8 @@ public abstract class Boat extends Entity {
             }
         }
 
+        //these values are  just outputted as a test
+        //not to be included in final version
         System.out.println(speed*exhaustion);
         System.out.println(exhaustion);
 
