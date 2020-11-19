@@ -16,7 +16,6 @@ public class StationaryObstacle extends Obstacle {
 
     public StationaryObstacle(int levelNum, int i) {
         super(
-                levelNum,
                 i,
                 new Texture(possibleSprites[levelNum - 1][getRandomSprite(possibleSprites[levelNum - 1])])
         );

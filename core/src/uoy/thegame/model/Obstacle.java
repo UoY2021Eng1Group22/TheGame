@@ -3,20 +3,15 @@ package uoy.thegame.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-
 public abstract class Obstacle extends Entity {
-    private static final String[][] possibleSprites = {
-            {"obstacles/obs1.png", "obstacles/obs2.png"},
-            {"obstacles/obs1.png", "obstacles/obs2.png"},
-            {"obstacles/obs3.png", "obstacles/obs4.png"},
-            {"obstacles/obs5.png", "obstacles/obs5.png"}
-    };
 
     private int capableDamage;
 
-    public Obstacle(int levelNum, int i, Texture texture) {
+    public Obstacle(int i, Texture texture) {
 
         // textures are passed in from concretes
+
+        // initialise superclass
 
         super(
                 (int) (Math.random() * (Gdx.graphics.getWidth() - 120) + 60),
@@ -24,7 +19,9 @@ public abstract class Obstacle extends Entity {
                 texture
         );
 
-        // using 50 as a multiplyer spaces the obstacles out well
+
+        // logic: set proper calculated y position
+        // using 50 as a multiplier spaces the obstacles out well
         // if y gets too big then we make it smaller
 
         int yp = i * 50;
@@ -32,7 +29,7 @@ public abstract class Obstacle extends Entity {
             yp -= 101;
         }
 
-        this.setY(yp);
+        this.setyPos(yp);
     }
 
     /**

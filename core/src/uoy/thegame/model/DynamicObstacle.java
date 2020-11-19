@@ -3,6 +3,9 @@ package uoy.thegame.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
+/**
+ * DynamicObstacle are obstacles that spawns randomly in the final stage.
+ */
 public class DynamicObstacle extends Obstacle {
     private final int lifespan;
     private final float frequency;
@@ -11,7 +14,6 @@ public class DynamicObstacle extends Obstacle {
     public DynamicObstacle(int levelNum, int life, float freq) {
 
         super(
-                levelNum,
                 0,
                 new Texture("obstacles/obsDyn1.png")
         );

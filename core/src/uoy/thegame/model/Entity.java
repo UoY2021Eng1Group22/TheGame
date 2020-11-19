@@ -48,6 +48,14 @@ abstract class Entity extends Actor {
         return yPos;
     }
 
+    public void setxPos(float xPos) {
+        this.xPos = xPos;
+    }
+
+    public void setyPos(float yPos) {
+        this.yPos = yPos;
+    }
+
     public void setPosition(int x, int y) {
         this.xPos = x;
         this.yPos = y;
@@ -58,7 +66,7 @@ abstract class Entity extends Actor {
         this.yPos += y;
     }
 
-//    public void translate(Direction d) {
+    //    public void translate(Direction d) {
 //
 //        switch (d) {
 //            case Up:

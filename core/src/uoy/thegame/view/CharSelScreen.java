@@ -39,10 +39,6 @@ public class CharSelScreen implements Screen {
         stage.addActor(bgImage);
     }
 
-    public void create() {
-
-    }
-
     @Override
     public void resize(int width, int height) {
 
