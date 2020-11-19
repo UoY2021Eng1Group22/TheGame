@@ -112,6 +112,7 @@ public abstract class Boat extends Entity {
             case Left:
                 this.speed = this.decelerate(this.speed);
 
+
                 break;
             case Right:
                 hasStarted = true;
@@ -120,7 +121,10 @@ public abstract class Boat extends Entity {
 
                 }
 
+
+
                 break;
+
         }
 
 
@@ -156,6 +160,7 @@ public abstract class Boat extends Entity {
 
     @Override
     public void act(float delta) {
+
         this.translate(speed*exhaustion, 0);
         if (hasStarted){
             if(this.exhaustion > 0.5){
@@ -165,6 +170,7 @@ public abstract class Boat extends Entity {
 
         System.out.println(speed*exhaustion);
         System.out.println(exhaustion);
+
     }
 
     public float getHealth() {
