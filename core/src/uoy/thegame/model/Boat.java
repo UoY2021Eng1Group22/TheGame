@@ -110,12 +110,12 @@ public abstract class Boat extends Entity {
             case Left:
                 this.speed = this.decelerate(this.speed);
                 this.speed -= this.exhaustion;
-                this.translate(this.getxPos() + speed, 0);
+
                 break;
             case Right:
                 this.speed = this.accelerate(this.speed);
                 this.speed -= this.exhaustion;
-                this.translate(this.getxPos() + speed, 0);
+
                 break;
         }
 
@@ -146,6 +146,11 @@ public abstract class Boat extends Entity {
             speed = 0;
         }
         return speed;
+    }
+
+    @Override
+    public void act(float delta) {
+        this.translate(this.getxPos() + speed, 0);
     }
 
     public float getHealth() {
