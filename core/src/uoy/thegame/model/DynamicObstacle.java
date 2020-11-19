@@ -12,6 +12,7 @@ public class DynamicObstacle extends Obstacle {
 
         super(
                 levelNum,
+                0,
                 new Texture("obstacles/obsDyn1.png")
         );
 

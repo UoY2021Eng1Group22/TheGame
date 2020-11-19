@@ -5,13 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uoy.thegame.GameLevel;
 import uoy.thegame.model.Boat;
+import uoy.thegame.model.Obstacle;
 import uoy.thegame.model.PlayerBoat;
 
 public class PlayScreen implements Screen {
@@ -19,7 +19,6 @@ public class PlayScreen implements Screen {
     private final Stage stage;
     private final Game game; // placeholder for going to the next screen
 
-    SpriteBatch batch;
     Texture bgTexture;
     GameLevel levelInfo;
 
@@ -41,15 +40,26 @@ public class PlayScreen implements Screen {
 
         var currentStageObstacles = levelInfo.getCurrentStageObstacles();
 
-        // mostly copied from above setup, non functional (???)
-        for (var currentObstacle : currentStageObstacles) {
+        for (Obstacle currentObstacle : currentStageObstacles) {              // mostly copied from above setup, non functional
             stage.addActor(currentObstacle);
         }
+
+        var currentStageEnemies = levelInfo.getCurrentStageEnemies();
+
+        for (Boat currentEnemy : currentStageEnemies) {
+            stage.addActor(currentEnemy);
+        }
+
+
+    }
+
+    public void create() {
 
     }
 
     @Override
     public void resize(int width, int height) {
+
     }
 
     @Override

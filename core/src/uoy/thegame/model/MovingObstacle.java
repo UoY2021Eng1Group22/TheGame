@@ -1,5 +1,6 @@
 package uoy.thegame.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class MovingObstacle extends Obstacle {
@@ -12,12 +13,16 @@ public class MovingObstacle extends Obstacle {
             "obstacles/obsMov3.gif"
     };
 
-    public MovingObstacle(int levelNum) {
+    public MovingObstacle(int levelNum, int i) {
 
         super(
                 levelNum,
+                i,
                 new Texture(possibleSprites[getRandomSprite(possibleSprites)])
         );
+
+        super.setPosition(
+                (int) (Math.random() * Gdx.graphics.getWidth()), i*60);
 
 //        super.setPosition(
 //                (int) (Math.random() * Gdx.graphics.getWidth()),

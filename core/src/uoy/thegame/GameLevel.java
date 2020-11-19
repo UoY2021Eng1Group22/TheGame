@@ -2,6 +2,7 @@ package uoy.thegame;
 
 import com.badlogic.gdx.graphics.Texture;
 import uoy.thegame.model.DynamicObstacle;
+import uoy.thegame.model.Boat;
 import uoy.thegame.model.MovingObstacle;
 import uoy.thegame.model.Obstacle;
 import uoy.thegame.model.StationaryObstacle;
@@ -11,18 +12,16 @@ import java.util.ArrayList;
 public class GameLevel {
 
     private final ArrayList<Obstacle> currentStageObstacles;
+    private final ArrayList<Boat> currentStageEnemies;
     private final int currentStage;
     private final Texture bgImg;
     private final int stationaryObstacles;
     private final int movingObstacles;
     private final int dynamicObstacles;
     private final int amountOfOpponents;
-    private final int currentTotalObstacles;
 
     // will give the information associated with a certain level number, as well as generate the starting obstacles
     public GameLevel(int stageNo) {
-
-        currentTotalObstacles = 0;
 
         // TODO: move custom assets out of `assets/skin`
 
@@ -74,6 +73,8 @@ public class GameLevel {
 //            // currentStageObstacles.add(startMovObst);                 // not yet functional
 //        }
 
+        currentStageEnemies = new ArrayList<>();
+
         var obstacleGenerator = new ObstacleGenerator(currentStage);
         this.currentStageObstacles = obstacleGenerator.generateObstacles(
                 stationaryObstacles,
@@ -82,6 +83,10 @@ public class GameLevel {
         );
 
         // subroutine: generateOpponents
+
+        for (int k = 0; k < amountOfOpponents; k++) {
+//            currentStageEnemies.add(new Boat());
+        }
 
 
     }
@@ -92,6 +97,10 @@ public class GameLevel {
 
     public ArrayList<Obstacle> getCurrentStageObstacles() {
         return currentStageObstacles;
+    }
+
+    public ArrayList<Boat> getCurrentStageEnemies() {
+        return currentStageEnemies;
     }
 }
 
@@ -115,7 +124,7 @@ class ObstacleGenerator {
         }
 
         for (int i = 0; i < moving; i++) {
-            obstacles.add(new MovingObstacle(levelNum));
+            obstacles.add(new MovingObstacle(levelNum, 1));
         }
 
         for (int i = 0; i < dynamic; i++) {
