@@ -14,9 +14,10 @@ public class StationaryObstacle extends Obstacle {
             {"obstacles/obs5.png", "obstacles/obs5.png"}
     };
 
-    public StationaryObstacle(int levelNum) {
+    public StationaryObstacle(int levelNum, int i) {
         super(
                 levelNum,
+                i,
                 new Texture(possibleSprites[levelNum - 1][getRandomSprite(possibleSprites[levelNum - 1])])
         );
     }

@@ -1,11 +1,7 @@
 package uoy.thegame;
 
 import com.badlogic.gdx.graphics.Texture;
-import uoy.thegame.model.DynamicObstacle;
-import uoy.thegame.model.Boat;
-import uoy.thegame.model.MovingObstacle;
-import uoy.thegame.model.Obstacle;
-import uoy.thegame.model.StationaryObstacle;
+import uoy.thegame.model.*;
 
 import java.util.ArrayList;
 
@@ -120,7 +116,7 @@ class ObstacleGenerator {
         var obstacles = new ArrayList<Obstacle>();
 
         for (int i = 0; i < stationary; i++) {
-            obstacles.add(new StationaryObstacle(levelNum));
+            obstacles.add(new StationaryObstacle(levelNum, i));
         }
 
         for (int i = 0; i < moving; i++) {
