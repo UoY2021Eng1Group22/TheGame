@@ -76,7 +76,7 @@ public class PlayScreen implements Screen {
         // placeholder player boat, to test the user controls
 
         var playerBoat = new PlayerBoat(16, 16,
-                Boat.BoatType.VeryLarge,
+                Boat.BoatType.VerySmall,
                 new Texture("obstacles/obs2.png")
         );
 

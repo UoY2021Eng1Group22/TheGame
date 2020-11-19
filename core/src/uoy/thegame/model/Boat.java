@@ -13,6 +13,7 @@ public abstract class Boat extends Entity {
     private float agility;
     private float maxSpeed;
     private float exhaustion;
+    private boolean hasStarted;
     private int racePosition;
 
     // max speed indicates the speed stat
@@ -41,7 +42,8 @@ public abstract class Boat extends Entity {
         super(x, y, texture);
 
         this.speed = 0;
-        this.exhaustion = 0;
+        this.exhaustion = 1;
+        this.hasStarted = false;
 
         switch (type) {
             case VerySmall:
@@ -102,24 +104,26 @@ public abstract class Boat extends Entity {
 
         switch (d) {
             case Up:
-                this.translate(0, this.getyPos() + this.agility / 10);
+                this.translate(0, this.agility / 5);
                 break;
             case Down:
-                this.translate(0, this.getyPos() - this.agility / 10);
+                this.translate(0, -(this.agility / 5));
                 break;
             case Left:
                 this.speed = this.decelerate(this.speed);
-                this.speed -= this.exhaustion;
-                this.translate(this.getxPos() + speed, 0);
+
                 break;
             case Right:
-                this.speed = this.accelerate(this.speed);
-                this.speed -= this.exhaustion;
-                this.translate(this.getxPos() + speed, 0);
+                hasStarted = true;
+                if (speed <= maxSpeed/5){
+                    this.speed = this.accelerate(this.speed);
+
+                }
+
                 break;
         }
 
-        this.exhaustion += 0.01;
+
     }
 
     // override translate
@@ -129,9 +133,11 @@ public abstract class Boat extends Entity {
     // boat still moves right but at a slower speed, until the speed reaches 0
 
     private float accelerate(float speed) {
-        if (speed == maxSpeed) {
+        if (speed == 0){
+            speed += this.acceleration / 10;
             return speed;
         }
+
         speed += speed * (this.acceleration / 10);
         return speed;
     }
@@ -146,6 +152,19 @@ public abstract class Boat extends Entity {
             speed = 0;
         }
         return speed;
+    }
+
+    @Override
+    public void act(float delta) {
+        this.translate(speed*exhaustion, 0);
+        if (hasStarted){
+            if(this.exhaustion > 0.5){
+                this.exhaustion -= 0.0005;
+            }
+        }
+
+        System.out.println(speed*exhaustion);
+        System.out.println(exhaustion);
     }
 
     public float getHealth() {
