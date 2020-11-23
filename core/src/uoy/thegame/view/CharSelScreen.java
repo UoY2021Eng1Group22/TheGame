@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 // TODO: boiler
 
+// the screen for selecting the player's boat
 public class CharSelScreen implements Screen {
 
     private final Stage stage;
@@ -30,13 +31,15 @@ public class CharSelScreen implements Screen {
         bgTexture = new Texture("skin/dirt.png");
         bgTexture.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
 
-        // setup
+        // setup of texture regions and the background actor
         var textureRegion = new TextureRegion(bgTexture);
         textureRegion.setRegion(0, 0, bgTexture.getWidth(), bgTexture.getWidth());
         var bgImage = new Image(textureRegion);
         bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
+
+
     }
 
     @Override

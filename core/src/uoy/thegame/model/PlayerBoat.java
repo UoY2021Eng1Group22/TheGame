@@ -11,8 +11,11 @@ public class PlayerBoat extends Boat {
 
     public PlayerBoat(int x, int y, BoatType type, Texture texture) {
         super(x, y, type, texture);
+        // means the object won't move until the player presses a button
+        // see the show() method on the PlayScreen class for usage
         this.controllable = false;
 
+        // logic for receiving inputs from the player
         this.addListener(new InputListener() {
 
             public boolean keyTyped(InputEvent ev, char character) {

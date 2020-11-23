@@ -21,6 +21,7 @@ import uoy.thegame.TheGame;
 
 /**
  * MainMenu is the title screen for the game.
+ * It is the first thing the player will see upon booting up the game (but logically the game first goes to TheGame, which then goes here
  */
 public class MainMenuScreen implements Screen {
 

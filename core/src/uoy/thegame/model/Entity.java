@@ -4,13 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+// an enum class called Direction that will be passed into the Boat class' translate function
 enum Direction {
     Up,
     Down,
     Left,
     Right
 }
-
+// our abstract superclass for obstacles and boats
 abstract class Entity extends Actor {
 
     private final Texture texture;
@@ -25,8 +26,10 @@ abstract class Entity extends Actor {
     public Entity(float x, float y, Texture texture) {
         this.texture = texture;
 
+        //used to set the texture boundaries
         this.setBounds(xPos, yPos, this.texture.getWidth(), this.texture.getHeight());
 
+        //as we are using Textures instead of Sprites for the texture, we must store the entity's position
         this.xPos = x;
         this.yPos = y;
     }
@@ -35,6 +38,7 @@ abstract class Entity extends Actor {
         return new int[]{this.texture.getWidth(), this.texture.getHeight()};
     }
 
+    // used by the main game code to draw the Entity Actor to the screen
     @Override
     public void draw(Batch batch, float alpha) {
         batch.draw(texture, xPos, yPos);
@@ -66,6 +70,7 @@ abstract class Entity extends Actor {
         this.yPos += y;
     }
 
+    // old code for movement and translation, now moved to the boat class
     //    public void translate(Direction d) {
 //
 //        switch (d) {
