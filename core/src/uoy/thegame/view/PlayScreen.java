@@ -14,6 +14,7 @@ import uoy.thegame.entitymodel.Entity;
 import uoy.thegame.entitymodel.PlayerBoat;
 import uoy.thegame.logic.GameLevel;
 
+// the main gameplay screen
 public class PlayScreen extends DummyScreen {
 
     private final Stage stage;
@@ -28,10 +29,11 @@ public class PlayScreen extends DummyScreen {
         stage = new Stage(new ScreenViewport());
         this.levelNum = levelNum;
 
+        //check the GameLevel class for usage
         this.level = new GameLevel(levelNum);
         var bgTexture = level.getTexture();
 
-        // setup
+        // setup of background texture/actor
 
         // split texture into texture regions to reduce load
         var textureRegion = new TextureRegion(bgTexture);
@@ -43,9 +45,14 @@ public class PlayScreen extends DummyScreen {
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
 
+        // receives the list of stage obstacles from the levelInfo
+        // adds the obstacles to the stage
         for (var currentObstacle : this.level.getCurrentStageObstacles()) {              // mostly copied from above setup, non functional
             stage.addActor(currentObstacle);
         }
+
+        // receives the list of ai boats from the levelInfo
+        // adds the ai boats to the stage
         for (var currentEnemy : this.level.getCurrentStageEnemies()) {
             stage.addActor(currentEnemy);
         }
@@ -69,17 +76,16 @@ public class PlayScreen extends DummyScreen {
     public void show() {
 
         // placeholder player boat, to test the user controls
-
         playerBoat = new PlayerBoat(16, 16,
                 Boat.BoatType.VerySmall,
-                new Texture("obstacles/obs2.png")
+                new Texture("Boats/2.png")
         );
 
         playerBoat.setControllable(true);
 
-        // handing control over to actor
-
+        // handing the player the control over the playerBoat actor
         stage.setKeyboardFocus(playerBoat);
+
         stage.addActor(playerBoat);
 
         Gdx.input.setInputProcessor(stage);

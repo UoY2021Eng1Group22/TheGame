@@ -5,8 +5,11 @@ import uoy.thegame.entitymodel.*;
 
 import java.util.ArrayList;
 
+// a class for generating the ai boats and obstacles, as well as storing information about the current stage
+// e.g. the texture of the stage, number of opponents etc
 public class GameLevel {
 
+    //some of these may be obsolete?
     private final ArrayList<Obstacle> currentStageObstacles;
     private final ArrayList<Boat> currentStageEnemies;
     private final int currentStage;
@@ -23,6 +26,7 @@ public class GameLevel {
 
         currentStage = stageNo;
 
+        //assigns the level's information using a switch case
         switch (currentStage) {
             case 1:                // level one info
                 stationaryObstacles = 3;
@@ -56,9 +60,6 @@ public class GameLevel {
                 throw new UnsupportedOperationException("Stage not implemented");
         }
 
-
-        // moved
-
         currentStageEnemies = new ArrayList<>();
 
         var obstacleGenerator = new ObstacleGenerator(currentStage);
@@ -89,6 +90,7 @@ public class GameLevel {
     }
 }
 
+// a class for generating the obstacles
 class ObstacleGenerator {
 
     private final int levelNum;
@@ -97,26 +99,30 @@ class ObstacleGenerator {
         this.levelNum = levelNum;
     }
 
-    ArrayList<Obstacle> generateObstacles(int stationary, int moving, int dynamic) {
+        ArrayList<Obstacle> generateObstacles(int stationary, int moving, int dynamic) {
 
-        // "generic obstacles"
-        // can contain any obstacles and its subclass
+            // "generic obstacles"
+            // can contain any obstacles and its subclass
 
-        var obstacles = new ArrayList<Obstacle>();
+            // list of obstacles
+            var obstacles = new ArrayList<Obstacle>();
 
-        for (int i = 0; i < stationary; i++) {
-            obstacles.add(new StationaryObstacle(levelNum, i));
-        }
+            // adds stationary obstacles
+            for (int i = 0; i < stationary; i++) {
+                obstacles.add(new StationaryObstacle(levelNum, i));
+            }
 
-        for (int i = 0; i < moving; i++) {
-            obstacles.add(new MovingObstacle(levelNum, 1));
-        }
+            //moving
+            for (int i = 0; i < moving; i++) {
+                obstacles.add(new MovingObstacle(levelNum, 1));
+            }
 
-        for (int i = 0; i < dynamic; i++) {
-            obstacles.add(new DynamicObstacle(levelNum, 10, 10));
-        }
+            //dynamic
+            for (int i = 0; i < dynamic; i++) {
+                obstacles.add(new DynamicObstacle(levelNum, 10, 10));
+            }
 
-        return obstacles;
+            return obstacles;
 
     }
 }

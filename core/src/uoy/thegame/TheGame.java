@@ -27,12 +27,10 @@ public class TheGame extends Game {
 	public void create() {
 
 		// load game skin and font
-
 		gameSkin = new Skin(Gdx.files.internal("skin/craftacular-ui.json"));
 		font = new BitmapFont(Gdx.files.internal("skin/font-title-export.fnt"));
 
 		// go to main menu (load the main menu screen)
-
 		this.setScreen(new MainMenuScreen(this));
 	}
 
