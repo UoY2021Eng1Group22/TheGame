@@ -122,7 +122,10 @@ public abstract class Boat extends Entity {
     // boat still moves right but at a slower speed, until the speed reaches 0
 
     private float accelerate(float speed) {
+
+        //if speed is 0, multiplying it by the acceleration wouldn't work
         if (speed == 0){
+            // We divide acceleration by 10 as an easy way to balance how fast the boat goes
             speed += this.acceleration / 10;
             return speed;
         }
@@ -132,6 +135,8 @@ public abstract class Boat extends Entity {
     }
 
     private float decelerate(float speed) {
+
+        //same as the acceleration function except if speed is already 0, or speed will become lower than 0 then just set speed to 0
         if (speed <= 0) {
             speed = 0;
             return speed;
@@ -152,7 +157,9 @@ public abstract class Boat extends Entity {
 
         this.translate(speed*exhaustion, 0);
         if (hasStarted){
+            // 0.5, or 50% exhaustion is the limit we have set on how exhausted the rowers can become
             if(this.exhaustion > 0.5){
+                // 0.0005 is the amount we are decreasing exhaustion by each time the boat "acts"
                 this.exhaustion -= 0.0005;
             }
         }
@@ -164,6 +171,7 @@ public abstract class Boat extends Entity {
 
     }
 
+    //non implemented functions for finding the boats hp and decreasing the hp
     public float getHealth() {
         return this.health;
     }
