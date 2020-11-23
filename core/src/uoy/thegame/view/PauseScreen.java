@@ -2,7 +2,7 @@ package uoy.thegame.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,14 +10,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-// TODO: boiler
-
-public class CharSelScreen extends DummyScreen {
+/**
+ * PauseScreen is a Screen that users could go to, when
+ */
+public class PauseScreen extends DummyScreen {
 
     private final Stage stage;
     private final Game game;
 
-    public CharSelScreen(Game gameInstance) {
+    public PauseScreen(Game gameInstance, Screen prevScreen) {
         // parent game instance, to control the game screen (ApplicationListener)
         game = gameInstance;
 
@@ -35,6 +36,10 @@ public class CharSelScreen extends DummyScreen {
         bgImage.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         bgImage.setPosition(0, Gdx.graphics.getHeight() - bgImage.getHeight());
         stage.addActor(bgImage);
+
+
+        // 3 buttons: back to game, back to main screen, exit
+
     }
 
     @Override
@@ -49,13 +54,7 @@ public class CharSelScreen extends DummyScreen {
 
         stage.act();
         stage.draw();
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new PlayScreen(game, 1));
-        }
-
     }
-
 
     @Override
     public void dispose() {

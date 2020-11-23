@@ -1,7 +1,8 @@
-package uoy.thegame.model;
+package uoy.thegame.entitymodel;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 enum Direction {
@@ -11,11 +12,32 @@ enum Direction {
     Right
 }
 
-abstract class Entity extends Actor {
+// collision ref: https://gamedev.stackexchange.com/questions/87889/libgdx-how-to-check-collision-of-randomly-generated-actors
+
+/**
+ * Entity contains custom logics / shortcuts for other parts of the code to
+ * interact with the libgdx api,
+ * including setting coordinates, and textures.
+ */
+public abstract class Entity extends Actor {
+
+    /*
+    Design decisions:
+    - Made abstract as this class must not be instantiated directly.
+      - There are more concrete subtypes to use. (Obstacles, Boats)
+    - Sprites are not used.
+     */
+
+    // TODO: Texture scaling
+    // TODO: Texture Region
 
     private final Texture texture;
     private float xPos;
     private float yPos;
+
+    private final Rectangle bounds;
+
+    // private boolean isAnimated;
 
     // Note: extract Texture out as a class method (for assigning class variable)
     // throw error if texture is NullPointer
@@ -27,8 +49,10 @@ abstract class Entity extends Actor {
 
         this.setBounds(xPos, yPos, this.texture.getWidth(), this.texture.getHeight());
 
+        this.bounds = new Rectangle((int) xPos, (int) yPos, this.getWidth(), this.getHeight());
         this.xPos = x;
         this.yPos = y;
+
     }
 
     public int[] getTextureDim() {
@@ -61,24 +85,18 @@ abstract class Entity extends Actor {
         this.yPos = y;
     }
 
+    public String getPosStr() {
+        return String.format("(%f,%f)", this.getxPos(), this.getyPos());
+    }
+
     public void translate(float x, float y) {
         this.xPos += x;
         this.yPos += y;
     }
 
-    //    public void translate(Direction d) {
-//
-//        switch (d) {
-//            case Up:
-//                this.yPos += speed;
-//            case Down:
-//                this.yPos -= speed;
-//            case Left:
-//                this.xPos -= speed;
-//            case Right:
-//                this.xPos += speed;
-//        }
-//
-//    }
+    // collision detection between different actors
 
+    public Rectangle getBounds() {
+        return bounds;
+    }
 }

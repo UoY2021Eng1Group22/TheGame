@@ -1,6 +1,5 @@
-package uoy.thegame.model;
+package uoy.thegame.entitymodel;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -15,12 +14,13 @@ public class PlayerBoat extends Boat {
 
         this.addListener(new InputListener() {
 
+            @Override
             public boolean keyTyped(InputEvent ev, char character) {
                 var instance = (PlayerBoat) ev.getTarget();
 
-                Gdx.app.log("Control",
-                        String.format("user key typed: %c", character)
-                );
+//                Gdx.app.log("Control",
+//                        String.format("user key typed: %c", character)
+//                );
 
                 if (instance.isControllable()) {
                     switch (character) {
@@ -40,7 +40,6 @@ public class PlayerBoat extends Boat {
                 }
                 return false;
             }
-
         });
 
     }

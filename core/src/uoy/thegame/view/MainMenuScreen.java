@@ -4,7 +4,6 @@ package uoy.thegame.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -22,7 +21,7 @@ import uoy.thegame.TheGame;
 /**
  * MainMenu is the title screen for the game.
  */
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen extends DummyScreen {
 
     private final Stage stage;
     private final Game game;
@@ -35,18 +34,6 @@ public class MainMenuScreen implements Screen {
         // setup the stage
         stage = new Stage(new ScreenViewport());
 
-    }
-
-    @Override
-    public void resize(int width, int height) {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void pause() {
     }
 
     // analogous to create()
@@ -92,7 +79,7 @@ public class MainMenuScreen implements Screen {
         playButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
-                game.setScreen(new PlayScreen(game, 1)); // go to next screen (play screen)
+                game.setScreen(new CharSelScreen(game)); // go to next screen (play screen)
             }
 
             @Override
@@ -113,7 +100,7 @@ public class MainMenuScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent ev, float x, float y, int pointer, int button) {
-                dispose();
+                Gdx.app.exit();
             }
 
             @Override
@@ -130,10 +117,6 @@ public class MainMenuScreen implements Screen {
     }
 
     @Override
-    public void hide() {
-    }
-
-    @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -146,6 +129,5 @@ public class MainMenuScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        Gdx.app.exit();
     }
 }

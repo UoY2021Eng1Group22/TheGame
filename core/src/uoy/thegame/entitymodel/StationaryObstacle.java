@@ -1,4 +1,4 @@
-package uoy.thegame.model;
+package uoy.thegame.entitymodel;
 
 // Note: each Obstacle subclass has its own list of possibleSprites
 // -> Create texture and pass it into superclass (Obstacle)

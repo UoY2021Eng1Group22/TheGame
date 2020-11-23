@@ -1,4 +1,4 @@
-package uoy.thegame.model;
+package uoy.thegame.entitymodel;
 
 import com.badlogic.gdx.graphics.Texture;
 
@@ -150,17 +150,17 @@ public abstract class Boat extends Entity {
     @Override
     public void act(float delta) {
 
-        this.translate(speed*exhaustion, 0);
-        if (hasStarted){
-            if(this.exhaustion > 0.5){
+        this.translate(speed * exhaustion, 0);
+        if (hasStarted) {
+            if (this.exhaustion > 0.5) {
                 this.exhaustion -= 0.0005;
             }
         }
 
         //these values are  just outputted as a test
         //not to be included in final version
-        System.out.println(speed*exhaustion);
-        System.out.println(exhaustion);
+//        System.out.println(speed*exhaustion);
+//        System.out.println(exhaustion);
 
     }
 

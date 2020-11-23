@@ -1,7 +1,7 @@
-package uoy.thegame;
+package uoy.thegame.logic;
 
 import com.badlogic.gdx.graphics.Texture;
-import uoy.thegame.model.*;
+import uoy.thegame.entitymodel.*;
 
 import java.util.ArrayList;
 
@@ -58,16 +58,6 @@ public class GameLevel {
 
 
         // moved
-//        currentStageObstacles = new ArrayList<>();
-//        for (int i = 0; i < stationaryObstacles; i++) {     // Creates amount of stationary obstacles for how many should be on this stage
-//            currentStageObstacles.add(new Obstacle(currentStage));
-//            currentTotalObstacles++;
-//        }
-//
-//        for (int i = 0; i < movingObstacles; i++) {
-//            var startMovObst = new MovingObstacle(currentStage);
-//            // currentStageObstacles.add(startMovObst);                 // not yet functional
-//        }
 
         currentStageEnemies = new ArrayList<>();
 
@@ -80,10 +70,9 @@ public class GameLevel {
 
         // subroutine: generateOpponents
 
-/*        for (int k = 0; k < amountOfOpponents; k++) {
-            currentStageEnemies.add(new Boat());
+        for (int k = 0; k < amountOfOpponents; k++) {
+            currentStageEnemies.add(new EnemyBoat(0, 0, Boat.BoatType.Small, new Texture("Boats/1.png")));
         }
-*/
 
     }
 
