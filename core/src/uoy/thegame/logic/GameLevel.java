@@ -77,7 +77,7 @@ public class GameLevel {
 
     }
 
-    public Texture getTexture() {
+    public Texture getBgImg() {
         return this.bgImg;
     }
 
@@ -88,6 +88,27 @@ public class GameLevel {
     public ArrayList<Boat> getCurrentStageEnemies() {
         return currentStageEnemies;
     }
+
+    public int getCurrentStage() {
+        return currentStage;
+    }
+
+    public int getAmountOfOpponents() {
+        return amountOfOpponents;
+    }
+
+    public int getStationaryObstacles() {
+        return stationaryObstacles;
+    }
+
+    public int getMovingObstacles() {
+        return movingObstacles;
+    }
+
+    public int getDynamicObstacles() {
+        return dynamicObstacles;
+    }
+
 }
 
 // a class for generating the obstacles
@@ -99,30 +120,30 @@ class ObstacleGenerator {
         this.levelNum = levelNum;
     }
 
-        ArrayList<Obstacle> generateObstacles(int stationary, int moving, int dynamic) {
+    ArrayList<Obstacle> generateObstacles(int stationary, int moving, int dynamic) {
 
-            // "generic obstacles"
-            // can contain any obstacles and its subclass
+        // "generic obstacles"
+        // can contain any obstacles and its subclass
 
-            // list of obstacles
-            var obstacles = new ArrayList<Obstacle>();
+        // list of obstacles
+        var obstacles = new ArrayList<Obstacle>();
 
-            // adds stationary obstacles
-            for (int i = 0; i < stationary; i++) {
-                obstacles.add(new StationaryObstacle(levelNum, i));
-            }
+        // adds stationary obstacles
+        for (int i = 0; i < stationary; i++) {
+            obstacles.add(new StationaryObstacle(levelNum, i));
+        }
 
-            //moving
-            for (int i = 0; i < moving; i++) {
-                obstacles.add(new MovingObstacle(levelNum, 1));
-            }
+        //moving
+        for (int i = 0; i < moving; i++) {
+            obstacles.add(new MovingObstacle(levelNum, 1));
+        }
 
-            //dynamic
-            for (int i = 0; i < dynamic; i++) {
-                obstacles.add(new DynamicObstacle(levelNum, 10, 10));
-            }
+        //dynamic
+        for (int i = 0; i < dynamic; i++) {
+            obstacles.add(new DynamicObstacle(levelNum, 10, 10));
+        }
 
-            return obstacles;
+        return obstacles;
 
     }
 }

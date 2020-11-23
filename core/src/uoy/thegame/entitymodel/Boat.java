@@ -104,7 +104,7 @@ public abstract class Boat extends Entity {
                 //value being decreased
                 //the speed only increases if it isn't already at the max speed
                 hasStarted = true;
-                if (speed <= maxSpeed/5){
+                if (speed <= maxSpeed / 5) {
                     this.speed = this.accelerate(this.speed);
 
                 }
@@ -124,7 +124,7 @@ public abstract class Boat extends Entity {
     private float accelerate(float speed) {
 
         //if speed is 0, multiplying it by the acceleration wouldn't work
-        if (speed == 0){
+        if (speed == 0) {
             // We divide acceleration by 10 as an easy way to balance how fast the boat goes
             speed += this.acceleration / 10;
             return speed;
@@ -155,10 +155,10 @@ public abstract class Boat extends Entity {
     @Override
     public void act(float delta) {
 
-        this.translate(speed*exhaustion, 0);
-        if (hasStarted){
+        this.translate(speed * exhaustion, 0);
+        if (hasStarted) {
             // 0.5, or 50% exhaustion is the limit we have set on how exhausted the rowers can become
-            if(this.exhaustion > 0.5){
+            if (this.exhaustion > 0.5) {
                 // 0.0005 is the amount we are decreasing exhaustion by each time the boat "acts"
                 this.exhaustion -= 0.0005;
             }

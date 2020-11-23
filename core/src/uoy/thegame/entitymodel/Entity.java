@@ -34,10 +34,9 @@ public abstract class Entity extends Actor {
     // TODO: Texture Region
 
     private final Texture texture;
+    private final Rectangle bounds;
     private float xPos;
     private float yPos;
-
-    private final Rectangle bounds;
 
     // private boolean isAnimated;
 
@@ -75,12 +74,12 @@ public abstract class Entity extends Actor {
         return xPos;
     }
 
-    public float getyPos() {
-        return yPos;
-    }
-
     public void setxPos(float xPos) {
         this.xPos = xPos;
+    }
+
+    public float getyPos() {
+        return yPos;
     }
 
     public void setyPos(float yPos) {

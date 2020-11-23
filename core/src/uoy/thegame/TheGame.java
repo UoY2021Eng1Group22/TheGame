@@ -8,39 +8,39 @@ import uoy.thegame.view.MainMenuScreen;
 
 /**
  * TheGame is the entrypoint of the game.
- *
+ * <p>
  * This class loads the game skin and font, and sets the screen to MainMenu.
- *
+ * <p>
  * No game logic should live here.
  */
 public class TheGame extends Game {
 
-	// superclass changed from ApplicationListener to Game
-	// to utilise Screen interface
+    // superclass changed from ApplicationListener to Game
+    // to utilise Screen interface
 
-	// TODO: move all config values out of source-code (for easier modification)
+    // TODO: move all config values out of source-code (for easier modification)
 
-	static public Skin gameSkin;
-	static public BitmapFont font;
+    static public Skin gameSkin;
+    static public BitmapFont font;
 
-	@Override
-	public void create() {
+    @Override
+    public void create() {
 
-		// load game skin and font
-		gameSkin = new Skin(Gdx.files.internal("skin/craftacular-ui.json"));
-		font = new BitmapFont(Gdx.files.internal("skin/font-title-export.fnt"));
+        // load game skin and font
+        gameSkin = new Skin(Gdx.files.internal("skin/craftacular-ui.json"));
+        font = new BitmapFont(Gdx.files.internal("skin/font-title-export.fnt"));
 
-		// go to main menu (load the main menu screen)
-		this.setScreen(new MainMenuScreen(this));
-	}
+        // go to main menu (load the main menu screen)
+        this.setScreen(new MainMenuScreen(this));
+    }
 
-	@Override
-	public void render() {
-		super.render();
-	}
+    @Override
+    public void render() {
+        super.render();
+    }
 
-	@Override
-	public void dispose() {
-		super.dispose();
-	}
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

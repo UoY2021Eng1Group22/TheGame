@@ -31,7 +31,7 @@ public class PlayScreen extends DummyScreen {
 
         //check the GameLevel class for usage
         this.level = new GameLevel(levelNum);
-        var bgTexture = level.getTexture();
+        var bgTexture = level.getBgImg();
 
         // setup of background texture/actor
 
@@ -57,16 +57,6 @@ public class PlayScreen extends DummyScreen {
             stage.addActor(currentEnemy);
         }
     }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void resume() {
-    }
-
     @Override
     public void pause() {
         // should be called when Esc pressed
