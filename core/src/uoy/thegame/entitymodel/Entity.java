@@ -52,7 +52,7 @@ public abstract class Entity extends Actor {
 
 //        this.xPos = x;
 //        this.yPos = y;
-
+//        var pixmap = new Pixmap
         this.setWidth(texture.getWidth());
         this.setHeight(texture.getHeight());
         this.setPosition(x, y);
