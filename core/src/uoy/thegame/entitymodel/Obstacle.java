@@ -29,12 +29,12 @@ public abstract class Obstacle extends Entity {
         // we have found that using 50 as a multiplier spaces the obstacles out well
         // this helps space out the obstacles so they dont end up inbetween lanes (see the stage 2 texture for why this is an issue)
 
-        int yp = i * 50;
+        var yp = i * 50;
         if (yp > 404) {
             yp -= 101;
         }
 
-        this.setyPos(yp);
+//        this.setyPos(yp);
     }
 
     /**

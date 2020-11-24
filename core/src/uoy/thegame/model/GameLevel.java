@@ -1,4 +1,4 @@
-package uoy.thegame.logic;
+package uoy.thegame.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import uoy.thegame.entitymodel.*;

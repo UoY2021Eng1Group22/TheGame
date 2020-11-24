@@ -34,9 +34,10 @@ public abstract class Entity extends Actor {
     // TODO: Texture Region
 
     private final Texture texture;
-    private final Rectangle bounds;
-    private float xPos;
-    private float yPos;
+    private final Rectangle rect;
+
+    // Note: Pixmap -> Texture -> TextureRegion (?)
+    // Scale at Pixmap
 
     // private boolean isAnimated;
 
@@ -46,78 +47,68 @@ public abstract class Entity extends Actor {
     // method: setPosition (setX, setY), translate (x, y)
 
     public Entity(float x, float y, Texture texture) {
+
         this.texture = texture;
 
+//        this.xPos = x;
+//        this.yPos = y;
+
+        this.setWidth(texture.getWidth());
+        this.setHeight(texture.getHeight());
+        this.setPosition(x, y);
 
         //used to set the texture boundaries
-        this.setBounds(xPos, yPos, this.texture.getWidth(), this.texture.getHeight());
+        this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this.setSize(this.getWidth(), this.getHeight());
+        this.setOrigin(0, 0);
 
-        this.bounds = new Rectangle((int) xPos, (int) yPos, this.getWidth(), this.getHeight());
+        this.rect = new Rectangle((int) x, (int) y, this.getWidth(), this.getHeight());
 
         //as we are using Textures instead of Sprites for the texture, we must store the entity's position
-        this.xPos = x;
-        this.yPos = y;
 
-    }
-
-    public int[] getTextureDim() {
-        return new int[]{this.texture.getWidth(), this.texture.getHeight()};
     }
 
     // used by the main game code to draw the Entity Actor to the screen
     @Override
     public void draw(Batch batch, float alpha) {
-        batch.draw(texture, xPos, yPos);
+        batch.draw(texture, this.getX(), this.getY());
     }
 
-    public float getxPos() {
-        return xPos;
-    }
+    private void entityPos(float x, float y) {
 
-    public void setxPos(float xPos) {
-        this.xPos = xPos;
-    }
+//        this.setPosition(x, y);
+//        this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
-    public float getyPos() {
-        return yPos;
-    }
+//        var v2 = new Vector2();
+//        v2.set(x, y);
+//
+//        this.stageToLocalCoordinates(v2);
 
-    public void setyPos(float yPos) {
-        this.yPos = yPos;
-    }
+        this.setPosition(x, y);
+        this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this.rect.set(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
-    public void setPosition(int x, int y) {
-        this.xPos = x;
-        this.yPos = y;
-    }
-
-    public String getPosStr() {
-        return String.format("(%f,%f)", this.getxPos(), this.getyPos());
+//        Gdx.app.log("entity", String.format("getpos: x: %f, y: %f", this.getX(), this.getY()));
+//        Gdx.app.log("entity", String.format("bounds: %s", this.rect.getBounds()));
     }
 
     public void translate(float x, float y) {
-        this.xPos += x;
-        this.yPos += y;
+//        this.xPos += x;
+//        this.yPos += y;
+
+        var newX = this.getX() + x;
+        var newY = this.getY() + y;
+
+        this.entityPos(newX, newY);
+
     }
 
-    // old code for movement and translation, now moved to the boat class
-    //    public void translate(Direction d) {
-//
-//        switch (d) {
-//            case Up:
-//                this.yPos += speed;
-//            case Down:
-//                this.yPos -= speed;
-//            case Left:
-//                this.xPos -= speed;
-//            case Right:
-//                this.xPos += speed;
-//        }
-//
-//    }
+    public Rectangle getRect() {
+        return rect;
+    }
 
     // collision detection between different actors
-    public Rectangle getBounds() {
-        return bounds;
-    }
+//    public Rectangle getBounds() {
+//        return bounds;
+//    }
 }

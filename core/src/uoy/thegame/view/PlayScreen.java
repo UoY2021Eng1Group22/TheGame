@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uoy.thegame.entitymodel.Boat;
 import uoy.thegame.entitymodel.Entity;
 import uoy.thegame.entitymodel.PlayerBoat;
-import uoy.thegame.logic.GameLevel;
+import uoy.thegame.model.GameLevel;
 
 // the main gameplay screen
 public class PlayScreen extends DummyScreen {
@@ -47,15 +47,12 @@ public class PlayScreen extends DummyScreen {
 
         // receives the list of stage obstacles from the levelInfo
         // adds the obstacles to the stage
-        for (var currentObstacle : this.level.getCurrentStageObstacles()) {              // mostly copied from above setup, non functional
-            stage.addActor(currentObstacle);
-        }
+        // mostly copied from above setup, non functional
+        this.level.getCurrentStageObstacles().forEach(stage::addActor);
 
         // receives the list of ai boats from the levelInfo
         // adds the ai boats to the stage
-        for (var currentEnemy : this.level.getCurrentStageEnemies()) {
-            stage.addActor(currentEnemy);
-        }
+        this.level.getCurrentStageEnemies().forEach(stage::addActor);
     }
     @Override
     public void pause() {
@@ -67,8 +64,8 @@ public class PlayScreen extends DummyScreen {
 
         // placeholder player boat, to test the user controls
         playerBoat = new PlayerBoat(16, 16,
-                Boat.BoatType.VerySmall,
-                new Texture("Boats/2.png")
+                Boat.BoatType.Medium,
+                new Texture("Boats/1.png")
         );
 
         playerBoat.setControllable(true);
@@ -115,7 +112,20 @@ public class PlayScreen extends DummyScreen {
 
             for (var actor : stage.getActors()) {
                 if (actor instanceof Entity) { // make sure actor is custom entity class
-                    Gdx.app.log("DEBUG", String.format("entity bound: %s", ((Entity) actor).getBounds()));
+                    var entity = (Entity) actor;
+
+                    Gdx.app.log("DEBUG",
+                            String.format("%s(%s) pos: %s, %s",
+                                    entity.getClass().getName(),
+                                    entity.hashCode(),
+                                    entity.getX(),
+                                    entity.getY()));
+                    Gdx.app.log("DEBUG",
+                            String.format("%s(%s) bound: %s, %s",
+                                    entity.getClass().getName(),
+                                    entity.hashCode(),
+                                    entity.getRect().getX(),
+                                    entity.getRect().getY()));
                 }
             }
 
@@ -124,23 +134,33 @@ public class PlayScreen extends DummyScreen {
         // inefficient, consider quad tree
         // https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 
-        for (var enemy : this.level.getCurrentStageEnemies()) {
-            for (var obstacle : this.level.getCurrentStageObstacles()) {
-                if (enemy.getBounds().overlaps(obstacle.getBounds())) {
-                    Gdx.app.log("BOUNDS", String.format("e: %s, o: %s",
-                            enemy.getPosStr(),
-                            obstacle.getPosStr()
-                            )
-                    );
-                }
+//        for (var enemy : this.level.getCurrentStageEnemies()) {
+//            for (var obstacle : this.level.getCurrentStageObstacles()) {
+//                if (enemy.getRect().overlaps(obstacle.getRect())) {
+//                    Gdx.app.log("BOUNDS", String.format("e: %s, o: %s",
+//                            enemy.getRect(),
+//                            obstacle.getRect()
+//                            )
+//                    );
+//                }
+//
+//                if (playerBoat.getRect().overlaps(obstacle.getRect())) {
+//                    Gdx.app.log("BOUNDS", String.format("e: %s, o: %s",
+//                            enemy.getRect(),
+//                            obstacle.getRect()
+//                            )
+//                    );
+//                }
+//            }
+//        }
 
-                if (playerBoat.getBounds().overlaps(obstacle.getBounds())) {
-                    Gdx.app.log("BOUNDS", String.format("e: %s, o: %s",
-                            enemy.getPosStr(),
-                            obstacle.getPosStr()
-                            )
-                    );
-                }
+        for (var obstacle : this.level.getCurrentStageObstacles()) {
+            if (playerBoat.getRect().overlaps(obstacle.getRect())) {
+                Gdx.app.log("BOUNDS", String.format("p: %s, o: %s",
+                        playerBoat.getRect(),
+                        obstacle.getRect()
+                        )
+                );
             }
         }
 
